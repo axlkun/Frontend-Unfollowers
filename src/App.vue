@@ -1,25 +1,28 @@
-<script setup>
-
-</script>
-
 <template>
-  <div>
-    Heyy
+  <div id="app">
+    <header>
+      <h1>My Vue App</h1>
+      <!-- Aquí puedes agregar una barra de navegación u otros elementos comunes -->
+    </header>
+
+    <main>
+      <!-- Aquí se cargará la vista correspondiente según la ruta actual -->
+      <router-view></router-view>
+    </main>
+
+    <footer>
+      <!-- Aquí puedes agregar el contenido del pie de página -->
+    </footer>
   </div>
-  
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<script>
+
+export default {
+  name: 'App',
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+</script>
+
+<style>
+/* Aquí puedes agregar estilos específicos para tu aplicación */
 </style>

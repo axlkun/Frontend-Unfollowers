@@ -1,28 +1,26 @@
 <template>
-  <div id="app">
-    <header>
-      <h1>My Vue App</h1>
-      <!-- Aquí puedes agregar una barra de navegación u otros elementos comunes -->
-    </header>
+  <v-app id="app">
+    <v-app-bar class="custom-border-bottom d-flex mb-6 bg-white">
+      <v-toolbar-title>Unfollowers</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn text>Tutorial</v-btn>
+      <v-btn text>Contacto</v-btn>
+    </v-app-bar>
 
     <main>
-      <!-- Aquí se cargará la vista correspondiente según la ruta actual -->
       <router-view></router-view>
     </main>
 
-    <footer>
-      <!-- Aquí puedes agregar el contenido del pie de página -->
-    </footer>
-  </div>
+    <footer></footer>
+  </v-app>
 </template>
 
 <script>
 
-export default {
-  name: 'App',
-}
 </script>
 
 <style>
-/* Aquí puedes agregar estilos específicos para tu aplicación */
+.custom-border-bottom {
+  border-bottom: 1px solid gray; 
+}
 </style>

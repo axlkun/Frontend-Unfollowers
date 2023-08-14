@@ -1,6 +1,6 @@
 <template>
-    <div>
-        About
+    <div class="section">
+        <p>About</p>
     </div>
 </template>
 
@@ -10,3 +10,7 @@ export default {
     // Aquí puedes agregar la lógica y configuraciones necesarias para tu aplicación
 }
 </script>
+
+<style>
+
+</style>

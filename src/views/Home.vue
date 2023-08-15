@@ -1,21 +1,34 @@
 <template>
     <div class="section">
 
-        <v-sheet class="d-flex flex-wrap justify-center">
-            <v-sheet class="w-50">
-                <v-file-input :rules="rules" accept=".zip" label="Selecciona el archivo ZIP" @change="handleFileChange"
-                    @click:clear="clearFile">
-                </v-file-input>
+        <v-sheet>
+            <v-sheet class="w-50 mx-auto mb-16 text-center">
+                <h1 class="text-h3 mb-8">Organiza tu Lista de Seguidores en <span class="font-weight-bold">Instagram</span>
+                    &#x270C;</h1>
+                <p>Descubre quiénes <span class="font-weight-bold">no te siguen de vuelta</span> y a <span
+                        class="font-weight-bold">quiénes no sigues.</span> ¡Ajusta tu círculo social de manera sencilla!
+                </p>
             </v-sheet>
+            <v-sheet class="d-flex flex-column align-center justify-center">
+                <v-sheet class="w-50">
+                    <v-file-input :rules="rules" accept=".zip" label="Selecciona el archivo ZIP" @change="handleFileChange"
+                        @click:clear="clearFile">
+                    </v-file-input>
+                </v-sheet>
 
-            <v-sheet class="ma-5">
-                <v-btn prepend-icon="mdi mdi-account-remove" variant="tonal" @click="requestAPI">
-                    Buscar
-                </v-btn>
+                <v-sheet class="ma-5">
+                    <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated" @click="requestAPI" class="mr-10" color="pink">
+                        Buscar
+                    </v-btn>
+
+                    <v-btn prepend-icon="mdi mdi-help" variant="tonal">
+                        Como funciona
+                    </v-btn>
+                </v-sheet>
             </v-sheet>
         </v-sheet>
 
-        <v-snackbar v-model="alert" min-height="80px" transition="scroll-y-reverse-transition" >
+        <v-snackbar v-model="alert" min-height="80px" transition="scroll-y-reverse-transition">
             {{ alertText }}
 
             <template v-slot:actions>
@@ -57,7 +70,7 @@ export default {
             if (this.selectedFile) {
                 console.log('Archivo seleccionado:', this.selectedFile);
             } else {
-                this.showAlert();
+                this.alert = true;
             }
         },
 
@@ -65,14 +78,6 @@ export default {
         clearFile() {
             this.selectedFile = null;
         },
-
-        showAlert() {
-            this.alert = true;
-            // setTimeout(() => {
-            //     this.alert = false;
-            // }, 5000);
-        }
-
     }
 }
 

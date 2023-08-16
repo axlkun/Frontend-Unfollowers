@@ -1,27 +1,34 @@
 <template>
     <div class="section">
 
-        <v-sheet>
-            <v-sheet class="w-50 mx-auto mb-16 text-center">
+        
+        <v-sheet class="d-flex flex-column justify-center align-center" style="min-height: 90vh;">
+            <v-sheet class="custom-sizing mx-auto mb-8 text-center">
                 <h1 class="text-h3 mb-8">Organiza tu Lista de Seguidores en <span class="font-weight-bold">Instagram</span>
-                    &#x270C;</h1>
+                    <a href="https://www.instagram.com/" target="_blank">
+                        <v-icon>
+                            <img src="src/assets/instagram-logo.svg" alt="Icono SVG" style="width: 32px; height: 32px;" />
+                        </v-icon>
+                    </a>
+                </h1>
                 <p>Descubre quiénes <span class="font-weight-bold">no te siguen de vuelta</span> y a <span
                         class="font-weight-bold">quiénes no sigues.</span> ¡Ajusta tu círculo social de manera sencilla!
                 </p>
             </v-sheet>
-            <v-sheet class="d-flex flex-column align-center justify-center">
-                <v-sheet class="w-50">
-                    <v-file-input :rules="rules" accept=".zip" label="Selecciona el archivo ZIP" @change="handleFileChange"
-                        @click:clear="clearFile">
-                    </v-file-input>
-                </v-sheet>
 
-                <v-sheet class="ma-5">
-                    <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated" @click="requestAPI" class="mr-10" color="pink">
+            <v-sheet class="w-100 d-flex flex-column justify-center align-center">
+                
+                <v-file-input :rules="rules" accept=".zip" label="Selecciona el archivo ZIP" @change="handleFileChange" class="custom-sizing"
+                    @click:clear="clearFile">
+                </v-file-input>
+
+                <v-sheet class="d-flex flex-sm-row flex-column text-center mt-5 justify-center w-100">
+                    <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated" @click="requestAPI" class="ma-3"
+                        color="pink">
                         Buscar
                     </v-btn>
 
-                    <v-btn prepend-icon="mdi mdi-help" variant="tonal">
+                    <v-btn prepend-icon="mdi mdi-help" variant="tonal" class="ma-3">
                         Como funciona
                     </v-btn>
                 </v-sheet>
@@ -83,4 +90,11 @@ export default {
 
 </script>
 
-<style></style>
+<style scoped>
+.custom-sizing {
+  width: 100%;
+  @media only screen and (min-width: 600px) { /* breakpoint para móviles */
+    width: 50%;
+  }
+}
+</style>

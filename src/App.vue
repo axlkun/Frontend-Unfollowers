@@ -58,8 +58,7 @@ export default {
 .section {
   width: 95%;
   max-width: 120rem;
-  margin: 100px auto;
-  min-height: 600px;
+  margin: 80px auto 0 auto;
   padding: 20px 10px;
   border: 1px solid #E0E0E0;
 }

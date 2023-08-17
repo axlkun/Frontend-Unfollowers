@@ -1,8 +1,7 @@
 <template>
   <v-app id="app">
-    <v-app-bar class="d-flex mb-6 bg-white" :elevation="0">
+    <v-app-bar class="bg-white" :elevation="0">
       <v-toolbar-title>Unfollowers</v-toolbar-title>
-      <v-spacer></v-spacer>
       <v-btn text>Tutorial</v-btn>
       <v-btn text>Contacto</v-btn>
     </v-app-bar>
@@ -60,6 +59,5 @@ export default {
   max-width: 120rem;
   margin: 80px auto 0 auto;
   padding: 20px 10px;
-  border: 1px solid #E0E0E0;
 }
 </style>

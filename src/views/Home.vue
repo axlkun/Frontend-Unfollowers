@@ -3,8 +3,8 @@
 
         <v-sheet class="d-flex flex-sm-row flex-column  align-center" style="min-height: 85vh">
             <v-sheet class="d-flex flex-column justify-center">
-                <v-sheet class="custom-sizing mx-auto mb-8 text-center">
-                    <h1 class="text-h3 mb-8 font-weight-bold text-grey-darken-3">Organiza tu Lista de Seguidores en <span
+                <v-sheet class="custom-sizing mx-auto mb-8">
+                    <h1 class="text-sm-h2 text-h3 mb-8 font-weight-bold text-grey-darken-3">Organiza tu Lista de Seguidores en <span
                             class="text-pink">Instagram</span>
                         <a href="https://www.instagram.com/" target="_blank">
                             <v-icon>
@@ -32,7 +32,7 @@
                             Buscar
                         </v-btn>
 
-                        <v-btn prepend-icon="mdi mdi-help" variant="tonal" class="ma-3">
+                        <v-btn prepend-icon="mdi mdi-help" variant="tonal" class="ma-3" href="#how">
                             Como funciona
                         </v-btn>
                     </v-sheet>
@@ -40,14 +40,14 @@
             </v-sheet>
 
             <v-sheet class="mt-10 d-flex flex-column justify-center ">
-                <v-alert class="custom-sizing" icon="mdi mdi-security" title="Sin Contraseñas"
+                <v-alert class="custom-sizing" color="green-darken-4" icon="mdi mdi-security" title="Sin Contraseñas"
                     text="Unfollowers nunca solicita tus credenciales de Instagram para funcionar. Tu información personal está completamente a salvo."
                     variant="tonal"></v-alert>
                 <img src="src/assets/imagen-home.svg" alt="Icono SVG" class="custom-sizing-img" />
             </v-sheet>
         </v-sheet>
 
-        <v-sheet style="min-height: 100vh" class="">
+        <v-sheet style="min-height: 100vh" id="how">
 
             <v-sheet class="pa-5 text-center">
                 <h2 class="text-h4 ma-1 font-weight-black text-pink">¿Cómo funciona?</h2>
@@ -72,9 +72,9 @@
                   </v-alert>
                 </v-timeline-item>
               </v-timeline>
+
         </v-sheet>
-
-
+        
         <v-snackbar v-model="alert" min-height="80px" transition="scroll-y-reverse-transition">
             {{ alertText }}
 
@@ -111,7 +111,7 @@ export default {
           color: 'indigo-darken-4',
           icon: 'mdi-download-box-outline',
           title: 'Descarga el ZIP',
-          description: '1- Ahora en tu navegador (computadora) abre la cuenta de correo asociado a tu Instagram <br> 2- Abre el correo electrónico enviado por Instagram con asunto "La descarga de tu información de Meta está lista" y da clic en "Descargar tu información" <br> 3- Esto te abrirá una nueva pestaña de Instagram donde te muestra la descarga disponible, da clic en "Descargar" e ingresa tu contraseña. La descarga comenzará automaticamente',
+          description: '1- Ahora en tu navegador (computadora) abre la cuenta de correo asociado a tu Instagram <br> 2- Abre el correo electrónico enviado por Instagram con asunto "La descarga de tu información de Meta está lista" y da clic en "Descargar tu información" <br> 3- Esto te abrirá una nueva pestaña de Instagram donde te muestra la descarga disponible, da clic en "Descargar" y confirma que es tu cuenta. La descarga comenzará automaticamente',
         },
         {
           id: 3,

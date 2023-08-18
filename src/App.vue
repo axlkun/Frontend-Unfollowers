@@ -1,7 +1,10 @@
 <template>
   <v-app id="app">
-    <v-app-bar class="bg-white" :elevation="0">
-      <v-toolbar-title>Unfollowers</v-toolbar-title>
+    <v-app-bar class="bg-grey-lighten-4" :elevation="0">
+      <v-toolbar-title><v-icon>
+        <img src="src/assets/logo.svg" alt="Icono SVG"
+            style="width: 24px; height: 24px;" />
+    </v-icon>Unfollowers</v-toolbar-title>
       <v-btn text>Tutorial</v-btn>
       <v-btn text>Contacto</v-btn>
     </v-app-bar>
@@ -13,20 +16,6 @@
     <v-footer
     class="text-center d-flex flex-column" color="pink"
   >
-    <div>
-      <v-btn
-        v-for="icon in icons"
-        :key="icon"
-        class="mx-4"
-        :icon="icon"
-        variant="text"
-      ></v-btn>
-    </div>
-
-    <!-- <div class="pt-0">
-      .
-    </div> -->
-
     <v-divider></v-divider>
 
     <div>
@@ -50,14 +39,11 @@ export default {
 </script>
 
 <style>
-.custom-border-bottom {
-  border-bottom: 1px solid gray; 
-}
 
-.section {
+/* .section {
   width: 95%;
   max-width: 120rem;
   margin: 80px auto 0 auto;
   padding: 20px 10px;
-}
+}*/
 </style>

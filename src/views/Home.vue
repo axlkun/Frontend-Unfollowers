@@ -92,6 +92,20 @@
             </v-sheet>
         </v-sheet>
 
+        <v-sheet class="d-flex flex-column align-center justify-center bg-white" style="min-height: 100vh;">
+            <v-sheet class="pa-5 text-center bg-white custom-sizing-contacto">
+                <h2 class="text-sm-h3 text-h4 ma-1 font-weight-black text-pink">Contáctame</h2>
+                <p class="text-h5 ma-1 font-weight-bold text-grey-darken-1" >¿Tienes alguna pregunta, inquietud o simplemente
+                    quieres decir hola? No dudes en ponerte en contacto.</p>
+                <v-btn prepend-icon="mdi mdi-email-arrow-right-outline" variant="elevated" @click="" class="ma-3"
+                    color="pink">
+                    Escribir un correo
+                </v-btn>
+            </v-sheet>
+
+            <img src="src/assets/imagen-contacto.svg" alt="Icono SVG" class="custom-sizing-img-contacto"/>
+        </v-sheet>
+
         <v-snackbar v-model="alert" min-height="80px" transition="scroll-y-reverse-transition">
             {{ alertText }}
 
@@ -221,10 +235,10 @@ export default {
     }
 }
 
-.custom-sizing-steps {
-    max-width: 250px;
-    max-height: 250px;
-    margin: 0 auto;
+.custom-sizing-img-contacto {
+    max-width: 300px;
+    max-height: 400px;
+    margin: -50px auto;
 
     @media only screen and (min-width: 600px) {
         max-width: 550px;
@@ -233,10 +247,22 @@ export default {
     }
 }
 
+.custom-sizing-contacto {
+    max-width: 400px;
+    max-height: 400px;
+    margin: 0 auto;
+
+    @media only screen and (min-width: 600px) {
+        max-width: 650px;
+        max-height: 650px;
+    }
+}
+
 .section-mobile {
-    padding: 60px 0 50px 0;
+    padding: 60px 0 0 0;
 
     @media only screen and (min-width: 600px) {
         padding: 0;
     }
-}</style>
+}
+</style>

@@ -5,8 +5,8 @@
         <img src="src/assets/logo.svg" alt="Icono SVG"
             style="width: 24px; height: 24px;" />
     </v-icon>Unfollowers</v-toolbar-title>
-      <v-btn text>Tutorial</v-btn>
-      <v-btn text>Contacto</v-btn>
+      <v-btn @click="scrollToSection('steps')" text>Tutorial</v-btn>
+      <v-btn @click="scrollToSection('contact')" text>Contacto</v-btn>
     </v-app-bar>
 
     <main>
@@ -16,34 +16,32 @@
     <v-footer
     class="text-center d-flex flex-column" color="pink"
   >
-    <v-divider></v-divider>
-
     <div>
       {{ new Date().getFullYear() }} — <strong>Unfollowers</strong>
+    </div>
+    <div>
+      Illustration by <a class="reset-style" href="https://freeicons.io/mobile-illustrations-2/dcbf-spotify-account-illustration-472">Athul Mc</a>
+                            on <a class="reset-style" href="https://freeicons.io">freeicons.io</a> 
     </div>
   </v-footer>
   </v-app>
 </template>
 
 <script>
+import { scrollToSection } from './utils/utils';
+
 export default {
-    data: () => ({
-      icons: [
-        'mdi-facebook',
-        'mdi-twitter',
-        'mdi-linkedin',
-        'mdi-instagram',
-      ],
-    }),
+
+    methods: {
+      scrollToSection
+    }
   }
 </script>
 
 <style>
 
-/* .section {
-  width: 95%;
-  max-width: 120rem;
-  margin: 80px auto 0 auto;
-  padding: 20px 10px;
-}*/
+.reset-style{
+  text-decoration: none; 
+  color: inherit;
+}
 </style>

@@ -33,7 +33,7 @@
                             Buscar
                         </v-btn>
 
-                        <v-btn prepend-icon="mdi mdi-help" variant="tonal" class="ma-3" @click="scrollToSection">
+                        <v-btn @click="scrollToSection('steps')" prepend-icon="mdi mdi-help" variant="tonal" class="ma-3">
                             Como funciona
                         </v-btn>
                     </v-sheet>
@@ -92,18 +92,18 @@
             </v-sheet>
         </v-sheet>
 
-        <v-sheet class="d-flex flex-column align-center justify-center bg-white" style="min-height: 100vh;">
+        <v-sheet class="d-flex flex-column align-center justify-center bg-white" style="min-height: 100vh;" id="contact">
             <v-sheet class="pa-5 text-center bg-white custom-sizing-contacto">
                 <h2 class="text-sm-h3 text-h4 ma-1 font-weight-black text-pink">Contáctame</h2>
-                <p class="text-h5 ma-1 font-weight-bold text-grey-darken-1" >¿Tienes alguna pregunta, inquietud o simplemente
+                <p class="text-h5 ma-1 font-weight-bold text-grey-darken-1">¿Tienes alguna pregunta, inquietud o simplemente
                     quieres decir hola? No dudes en ponerte en contacto.</p>
-                <v-btn prepend-icon="mdi mdi-email-arrow-right-outline" variant="elevated" @click="" class="ma-3"
-                    color="pink">
+                <v-btn prepend-icon="mdi mdi-email-arrow-right-outline" variant="elevated"
+                    href="mailto:axelcruz.dev@gmail.com" class="ma-3" color="pink">
                     Escribir un correo
                 </v-btn>
             </v-sheet>
 
-            <img src="src/assets/imagen-contacto.svg" alt="Icono SVG" class="custom-sizing-img-contacto"/>
+            <img src="src/assets/imagen-contacto.svg" alt="Icono SVG" class="custom-sizing-img-contacto" />
         </v-sheet>
 
         <v-snackbar v-model="alert" min-height="80px" transition="scroll-y-reverse-transition">
@@ -119,7 +119,10 @@
 </template>
 
 <script>
+import { scrollToSection } from '../utils/utils';
+
 export default {
+
     data: () => ({
         rules: [
             value => {
@@ -128,7 +131,7 @@ export default {
         ],
         selectedFile: null,
         alert: false,
-        alertText: 'No se ha seleccionado el archivo ZIP.',
+        alertText: '',
         stepsItems: [
             {
                 id: 1,
@@ -179,6 +182,8 @@ export default {
 
     methods: {
 
+        scrollToSection,
+
         // Asignamos el ZIP recibido a la variable selectedFile
         handleFileChange(event) {
             const files = event.target.files;
@@ -192,8 +197,18 @@ export default {
         // Realizamos la solicitud a la API 
         requestAPI() {
             if (this.selectedFile) {
-                console.log('Archivo seleccionado:', this.selectedFile);
+
+                const user = this.getUser();
+
+                if (user) {
+
+                } else {
+                    this.alertText = 'Lo siento, parece que el nombre del archivo ZIP no es el original o no es el ZIP esperado.'
+                    this.alert = true;
+                }
+
             } else {
+                this.alertText = 'No se ha seleccionado el archivo ZIP.'
                 this.alert = true;
             }
         },
@@ -203,10 +218,27 @@ export default {
             this.selectedFile = null;
         },
 
-        scrollToSection() {
-            const section = document.getElementById('steps');
-            section.scrollIntoView({ behavior: 'smooth' });
-        },
+        getUser() {
+
+            const fileName = this.selectedFile.name;
+
+            if (fileName.includes('-')) {
+
+                const split = fileName.split('-');
+
+                if (split[0] == 'instagram' && split[split.length - 1].includes('.zip')) {
+
+                    const lastElement = split[split.length - 1];
+
+                    return lastElement.replace('.zip', '');
+
+                }
+
+            }
+
+            return false;
+        }
+
     }
 }
 

@@ -50,4 +50,12 @@ export default {
   text-decoration: none; 
   color: inherit;
 }
+
+.section-mobile {
+  padding: 60px 0 0 0;
+
+  @media only screen and (min-width: 600px) {
+      padding: 0;
+  }
+}
 </style>

@@ -16,12 +16,18 @@
     <v-footer
     class="text-center d-flex flex-column" color="pink"
   >
-    <div>
+    <div class="ma-1">
       {{ new Date().getFullYear() }} — <strong>Unfollowers</strong>
     </div>
-    <div>
-      Illustration by <a class="reset-style" href="https://freeicons.io/mobile-illustrations-2/dcbf-spotify-account-illustration-472">Athul Mc</a>
-                            on <a class="reset-style" href="https://freeicons.io">freeicons.io</a> 
+    <div class="ma-1">
+      Illustration by <a class="reset-style" href="https://freeicons.io/mobile-illustrations-2/dcbf-spotify-account-illustration-472" target="_blank">Athul Mc</a>
+                            on <a class="reset-style" href="https://freeicons.io" target="_blank">freeicons.io</a> 
+    </div>
+    <div class="ma-1">
+      <a class="reset-style" href="https://www.instagram.com/axlkun/" target="_blank">
+        <p>By <strong>@axlkun</strong>&#129489;</p>
+      </a>
+      
     </div>
   </v-footer>
   </v-app>

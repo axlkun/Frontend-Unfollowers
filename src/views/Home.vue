@@ -248,12 +248,12 @@ export default {
 .custom-sizing {
     width: 90%;
     margin: 0 auto;
-
+  
     @media only screen and (min-width: 600px) {
         width: 75%;
         margin: 0;
     }
-}
+  }
 
 .custom-sizing-img {
     max-width: 250px;

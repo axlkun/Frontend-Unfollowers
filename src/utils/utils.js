@@ -1,4 +1,12 @@
-export function scrollToSection(targetSection) {
+export function scrollToSection(targetSection, routeName) {
+
+  if (routeName == '/') {
     const section = document.getElementById(targetSection);
-    section.scrollIntoView({ behavior: 'smooth' });
+
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  } else {
+    window.location.href = `/#${targetSection}`;
   }
+}

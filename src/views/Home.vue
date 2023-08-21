@@ -23,17 +23,17 @@
 
                 <v-sheet class="w-100 d-flex flex-column justify-center align-center bg-grey-lighten-4">
 
-                    <v-file-input :rules="rules" accept=".zip" label="Selecciona el archivo ZIP" @change="handleFileChange"
+                    <!-- <v-file-input :rules="rules" accept=".zip" label="Selecciona el archivo ZIP" @change="handleFileChange"
                         class="custom-sizing" @click:clear="clearFile">
-                    </v-file-input>
+                    </v-file-input> -->
 
                     <v-sheet class="d-flex flex-sm-row flex-column text-center mt-5 justify-center w-100 bg-grey-lighten-4">
-                        <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated" @click="requestAPI" class="ma-3"
+                        <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated" href="/results" class="ma-3"
                             color="pink">
-                            Buscar
+                            Quién no me sigue
                         </v-btn>
 
-                        <v-btn @click="scrollToSection('steps')" prepend-icon="mdi mdi-help" variant="tonal" class="ma-3">
+                        <v-btn @click="scrollToSection('steps',currentPage)" prepend-icon="mdi mdi-help" variant="tonal" class="ma-3">
                             Como funciona
                         </v-btn>
                     </v-sheet>
@@ -105,16 +105,6 @@
 
             <img src="src/assets/imagen-contacto.svg" alt="Icono SVG" class="custom-sizing-img-contacto" />
         </v-sheet>
-
-        <v-snackbar v-model="alert" min-height="80px" transition="scroll-y-reverse-transition">
-            {{ alertText }}
-
-            <template v-slot:actions>
-                <v-btn color="pink" variant="text" @click="alert = false">
-                    <span class="mdi mdi-close"></span>
-                </v-btn>
-            </template>
-        </v-snackbar>
     </div>
 </template>
 
@@ -124,14 +114,12 @@ import { scrollToSection } from '../utils/utils';
 export default {
 
     data: () => ({
+        currentPage: '/',
         rules: [
             value => {
                 return !value || !value.length || value[0].size < 5000000 || 'El archivo ZIP debe pesar menos de 5MB'
             },
         ],
-        selectedFile: null,
-        alert: false,
-        alertText: '',
         stepsItems: [
             {
                 id: 1,
@@ -182,62 +170,7 @@ export default {
 
     methods: {
 
-        scrollToSection,
-
-        // Asignamos el ZIP recibido a la variable selectedFile
-        handleFileChange(event) {
-            const files = event.target.files;
-            if (files.length > 0) {
-                this.selectedFile = files[0];
-            } else {
-                this.clearFile();
-            }
-        },
-
-        // Realizamos la solicitud a la API 
-        requestAPI() {
-            if (this.selectedFile) {
-
-                const user = this.getUser();
-
-                if (user) {
-
-                } else {
-                    this.alertText = 'Lo siento, parece que el nombre del archivo ZIP no es el original o no es el ZIP esperado.'
-                    this.alert = true;
-                }
-
-            } else {
-                this.alertText = 'No se ha seleccionado el archivo ZIP.'
-                this.alert = true;
-            }
-        },
-
-        // Limpiamos de memoria el archivo deseleccionado
-        clearFile() {
-            this.selectedFile = null;
-        },
-
-        getUser() {
-
-            const fileName = this.selectedFile.name;
-
-            if (fileName.includes('-')) {
-
-                const split = fileName.split('-');
-
-                if (split[0] == 'instagram' && split[split.length - 1].includes('.zip')) {
-
-                    const lastElement = split[split.length - 1];
-
-                    return lastElement.replace('.zip', '');
-
-                }
-
-            }
-
-            return false;
-        }
+        scrollToSection
 
     }
 }

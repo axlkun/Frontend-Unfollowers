@@ -63,7 +63,7 @@
                     </div>
 
                     <div>
-                        <div v-for="(item, index) in visibleItems" :key="index"
+                        <div v-for="(item, index) in visibleItemsUnfollowers" :key="index"
                             class="d-flex justify-space-between align-center custom-sizing-card bg-white pa-5 mb-5"
                             style="border-bottom: 1px solid #EEEEEE;">
                             <div class="d-flex align-center">
@@ -79,11 +79,14 @@
                                 <v-btn size="x-small" class="ma-2" variant="tonal" color="grey-darken-3" :href="item.enlace"
                                     target="_blank">Ver perfil</v-btn>
                                 <v-btn size="x-small" class="ma-2" variant="tonal" color="pink" :href="item.enlace"
-                                    target="_blank">Dejar de seguir</v-btn>
+                                    target="_blank">Dejar de seguir<v-tooltip
+                                    activator="parent"
+                                    location="top"
+                                  >Visitar perfil y quitar de la lista</v-tooltip></v-btn>
                             </div>
                         </div>
 
-                        <v-pagination v-model="currentPagination" :length="totalPages" @input="loadPageData" rounded="circle"></v-pagination>
+                        <v-pagination v-model="currentPaginationUnfollowers" :length="totalPagesUnfollowers" @input="loadPageDataUnfollowers" :total-visible="5" rounded="circle"></v-pagination>
                     </div>
                 </v-window-item>
 
@@ -91,26 +94,32 @@
                     <div class="custom-sizing-card pa-2 text-center bg-yellow-lighten-5 text-yellow-darken-4">
                         <p>{{ fans.length }} usuarios no sigues de vuelta</p>
                     </div>
-                    <div v-for="item in fans"
-                        class="d-flex justify-space-between align-center custom-sizing-card bg-white pa-5 mb-5"
-                        style="border-bottom: 1px solid #EEEEEE;">
+                    
+                    <div>
+                        <div v-for="(item, index) in visibleItemsFans" :key="index"
+                            class="d-flex justify-space-between align-center custom-sizing-card bg-white pa-5 mb-5"
+                            style="border-bottom: 1px solid #EEEEEE;">
+                            <div class="d-flex align-center">
+                                <v-icon icon="mdi-face-man-profile" color="pink" class="ma-1"></v-icon>
 
-                        <div class="d-flex align-center">
-                            <v-icon icon="mdi-face-man-profile" color="pink" class="ma-1"></v-icon>
+                                <div class="d-flex flex-sm-row flex-column text-center align-center justify-center">
+                                    <p class="ma-1">@{{ item.user_name }}</p>
+                                    <p class="ma-1 text-grey" style="font-size: 14px;">Desde {{ item.date }}</p>
+                                </div>
+                            </div>
 
-                            <div class="d-flex flex-sm-row flex-column text-center align-center justify-center">
-                                <p class="ma-1">@{{ item.user_name }}</p>
-                                <p class="ma-1 text-grey" style="font-size: 14px;">Desde {{ item.date }}</p>
+                            <div class="d-flex flex-sm-row flex-column">
+                                <v-btn size="x-small" class="ma-2" variant="tonal" color="grey-darken-3" :href="item.enlace"
+                                    target="_blank">Ver perfil</v-btn>
+                                <v-btn size="x-small" class="ma-2" variant="tonal" color="green-darken-4" :href="item.enlace"
+                                    target="_blank">Seguir<v-tooltip
+                                    activator="parent"
+                                    location="top"
+                                  >Visitar perfil y quitar de la lista</v-tooltip></v-btn>
                             </div>
                         </div>
 
-                        <div class="d-flex flex-sm-row flex-column">
-                            <v-btn size="x-small" class="ma-2" variant="tonal" color="grey-darken-3" :href="item.enlace"
-                                target="_blank">Ver perfil</v-btn>
-                            <v-btn size="x-small" class="ma-2" variant="tonal" color="pink" :href="item.enlace"
-                                target="_blank">Dejar de seguir</v-btn>
-                        </div>
-
+                        <v-pagination v-model="currentPaginationFans" :length="totalPagesFans" @input="loadPageDataFans" :total-visible="5" rounded="circle"></v-pagination>
                     </div>
                 </v-window-item>
             </v-window>
@@ -144,15 +153,20 @@ export default {
             },
         ],
         selectedFile: null,
+
         alert: false,
         alertText: '',
+
         tab: 'unfollowers',
         unfollowers: null,
         fans: null,
 
-        currentPagination: 1, // Página actual
-        itemsPerPage: 10, // Número de elementos por página
-        visibleItems: [], // Lista de elementos en la página actual
+        itemsPerPage: 10,
+        currentPaginationUnfollowers: 1, 
+        visibleItemsUnfollowers: [], 
+        currentPaginationFans: 1,
+        visibleItemsFans: []
+
     }),
 
     methods: {
@@ -203,7 +217,8 @@ export default {
                 this.alert = true;
             }
 
-            this.loadPageData();
+            this.loadPageDataUnfollowers();
+            this.loadPageDataFans();
         },
 
         // Limpiamos de memoria el archivo deseleccionado
@@ -297,31 +312,53 @@ export default {
             }
         },
 
-        loadPageData() {
+        loadPageDataUnfollowers() {
 
-            console.log('aqui');
             if (this.unfollowers) {
                 // Calcula el índice de inicio y final de los elementos en la página actual
-                const startIndex = (this.currentPagination - 1) * this.itemsPerPage;
+                const startIndex = (this.currentPaginationUnfollowers - 1) * this.itemsPerPage;
                 const endIndex = startIndex + this.itemsPerPage;
 
                 // Filtra los elementos que deben mostrarse en la página actual
-                this.visibleItems = this.unfollowers.slice(startIndex, endIndex);
+                this.visibleItemsUnfollowers = this.unfollowers.slice(startIndex, endIndex);
+            }
+        },
+
+        loadPageDataFans() {
+
+            if (this.fans) {
+                // Calcula el índice de inicio y final de los elementos en la página actual
+                const startIndex = (this.currentPaginationFans - 1) * this.itemsPerPage;
+                const endIndex = startIndex + this.itemsPerPage;
+
+                // Filtra los elementos que deben mostrarse en la página actual
+                this.visibleItemsFans = this.fans.slice(startIndex, endIndex);
             }
         }
     },
 
     computed: {
+
         // Calcula el número total de páginas
-        totalPages() {
-            console.log('aqui 2');
+
+        totalPagesUnfollowers() {
             return Math.ceil(this.unfollowers.length / this.itemsPerPage);
+        },
+
+        totalPagesFans() {
+            return Math.ceil(this.fans.length / this.itemsPerPage);
         },
     },
 
     watch: {
-        currentPagination(newPage) {
-            this.loadPageData();
+
+        // Detecta cambios en v-pagination
+        currentPaginationUnfollowers(newPage) {
+            this.loadPageDataUnfollowers();
+        },
+
+        currentPaginationFans(newPage) {
+            this.loadPageDataFans();
         },
     },
 }

@@ -15,7 +15,8 @@
                         </a>
                     </h1>
 
-                    <p class="text-h6 text-grey-darken-1 font-weight-bold">Gestiona tu lista de seguidos y seguidores. Solo adjunta el ZIP que solicitaste a Instagram aquí abajo &#128071;
+                    <p class="text-h6 text-grey-darken-1 font-weight-bold">Gestiona tu lista de seguidos y seguidores. Solo
+                        adjunta el ZIP que solicitaste a Instagram aquí abajo &#128071;
                     </p>
                 </v-sheet>
 
@@ -43,7 +44,7 @@
             </v-sheet>
         </v-sheet>
 
-        <v-sheet class="d-flex flex-column bg-white pt-sm-16 pt-0" style="min-height: 100vh">
+        <v-sheet v-if="unfollowers != null" class="d-flex flex-column bg-white pt-sm-16 pt-0" style="min-height: 100vh">
 
             <v-tabs v-model="tab" fixed-tabs class="bg-transparent w-100 ma-5">
                 <v-tab>
@@ -57,7 +58,42 @@
             <v-window v-model="tab">
                 <v-window-item key="unfollowers" value="unfollowers" class="bg-transparent mb-sm-0 mb-5">
 
-                    <div v-for="item in unfollowers" class="d-flex justify-space-between align-center custom-sizing-card bg-white pa-5 mb-5" style="border-bottom: 1px solid #EEEEEE;">
+                    <div class="custom-sizing-card pa-2 text-center bg-yellow-lighten-5 text-yellow-darken-4">
+                        <p>{{ unfollowers.length }} usuarios no te siguen de vuelta</p>
+                    </div>
+
+                    <div>
+                        <div v-for="(item, index) in visibleItems" :key="index"
+                            class="d-flex justify-space-between align-center custom-sizing-card bg-white pa-5 mb-5"
+                            style="border-bottom: 1px solid #EEEEEE;">
+                            <div class="d-flex align-center">
+                                <v-icon icon="mdi-face-man-profile" color="pink" class="ma-1"></v-icon>
+
+                                <div class="d-flex flex-sm-row flex-column text-center align-center justify-center">
+                                    <p class="ma-1">@{{ item.user_name }}</p>
+                                    <p class="ma-1 text-grey" style="font-size: 14px;">Desde {{ item.date }}</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-sm-row flex-column">
+                                <v-btn size="x-small" class="ma-2" variant="tonal" color="grey-darken-3" :href="item.enlace"
+                                    target="_blank">Ver perfil</v-btn>
+                                <v-btn size="x-small" class="ma-2" variant="tonal" color="pink" :href="item.enlace"
+                                    target="_blank">Dejar de seguir</v-btn>
+                            </div>
+                        </div>
+
+                        <v-pagination v-model="currentPagination" :length="totalPages" @input="loadPageData" rounded="circle"></v-pagination>
+                    </div>
+                </v-window-item>
+
+                <v-window-item key="fans" value="fans">
+                    <div class="custom-sizing-card pa-2 text-center bg-yellow-lighten-5 text-yellow-darken-4">
+                        <p>{{ fans.length }} usuarios no sigues de vuelta</p>
+                    </div>
+                    <div v-for="item in fans"
+                        class="d-flex justify-space-between align-center custom-sizing-card bg-white pa-5 mb-5"
+                        style="border-bottom: 1px solid #EEEEEE;">
 
                         <div class="d-flex align-center">
                             <v-icon icon="mdi-face-man-profile" color="pink" class="ma-1"></v-icon>
@@ -69,26 +105,13 @@
                         </div>
 
                         <div class="d-flex flex-sm-row flex-column">
-                            <v-btn size="x-small" class="ma-2" variant="tonal" color="grey-darken-3" :href="item.enlace" target="_blank">Ver perfil</v-btn>
-                            <v-btn size="x-small" class="ma-2" variant="tonal" color="pink" :href="item.enlace" target="_blank">Dejar de seguir</v-btn>
+                            <v-btn size="x-small" class="ma-2" variant="tonal" color="grey-darken-3" :href="item.enlace"
+                                target="_blank">Ver perfil</v-btn>
+                            <v-btn size="x-small" class="ma-2" variant="tonal" color="pink" :href="item.enlace"
+                                target="_blank">Dejar de seguir</v-btn>
                         </div>
 
                     </div>
-
-                </v-window-item>
-
-                <v-window-item key="fans" value="fans">
-                    <v-card class="custom-size-card">
-                        <v-banner lines="one" icon="mdi-lock" color="deep-purple-accent-4" class="my-4">
-                            <v-banner-text>
-                                Banner with one line of text.
-                            </v-banner-text>
-
-                            <template v-slot:actions>
-                                <v-btn>Action</v-btn>
-                            </template>
-                        </v-banner>
-                    </v-card>
                 </v-window-item>
             </v-window>
         </v-sheet>
@@ -124,33 +147,12 @@ export default {
         alert: false,
         alertText: '',
         tab: 'unfollowers',
-        unfollowers: [
-            {
-                "user_name": "_.histranger._",
-                "enlace": "https://www.instagram.com/_.histranger._",
-                "date": "2023-08-02"
-            },
-            {
-                "user_name": "maar11.11",
-                "enlace": "https://www.instagram.com/maar11.11",
-                "date": "2023-07-31"
-            },
-            {
-                "user_name": "esthepanycruz",
-                "enlace": "https://www.instagram.com/esthepanycruz",
-                "date": "2023-07-31"
-            },
-            {
-                "user_name": "lily_lbm",
-                "enlace": "https://www.instagram.com/lily_lbm",
-                "date": "2023-07-31"
-            },
-            {
-                "user_name": "sof_islass",
-                "enlace": "https://www.instagram.com/sof_islass",
-                "date": "2023-07-31"
-            }
-        ]
+        unfollowers: null,
+        fans: null,
+
+        currentPagination: 1, // Página actual
+        itemsPerPage: 10, // Número de elementos por página
+        visibleItems: [], // Lista de elementos en la página actual
     }),
 
     methods: {
@@ -165,22 +167,43 @@ export default {
         },
 
         // Realizamos la solicitud a la API 
-        requestAPI() {
-            if (this.selectedFile) {
+        async requestAPI() {
+            // Validar si se ha seleccionado un archivo ZIP
+            if (!this.selectedFile) {
+                this.alertText = 'No se ha seleccionado el archivo ZIP.';
+                this.alert = true;
+                return;
+            }
 
-                const user = this.getUser();
+            // Obtener el nombre de usuario del archivo ZIP
+            const user = this.getUser();
 
-                if (user) {
+            if (!user) {
+                this.alertText = 'Lo siento, parece que el nombre del archivo ZIP no es el original o no es el ZIP esperado.';
+                this.alert = true;
+                return;
+            }
 
-                } else {
-                    this.alertText = 'Lo siento, parece que el nombre del archivo ZIP no es el original o no es el ZIP esperado.'
-                    this.alert = true;
-                }
+            // Enviar el archivo ZIP y verificar si se envió correctamente
+            const sendZip = await this.sendZIP();
 
-            } else {
-                this.alertText = 'No se ha seleccionado el archivo ZIP.'
+            if (!sendZip) {
+                this.alertText = 'Se ha producido un error al enviar el archivo ZIP. Inténtalo más tarde.';
+                this.alert = true;
+                return;
+            }
+
+            // Obtener la lista de unfollowers y fans
+            this.unfollowers = await this.getUnfollowers(user);
+            this.fans = await this.getFans(user);
+
+            // Verificar si ocurrió un error en las solicitudes de la lista de unfollowers y fans
+            if (!this.unfollowers && !this.fans) {
+                this.alertText = 'Se ha producido un error al obtener la lista de unfollowers y fans. Inténtalo más tarde.';
                 this.alert = true;
             }
+
+            this.loadPageData();
         },
 
         // Limpiamos de memoria el archivo deseleccionado
@@ -207,22 +230,113 @@ export default {
             }
 
             return false;
+        },
+
+        async sendZIP() {
+            const endpoint = 'http://127.0.0.1:8000/api/store';
+
+            const formData = new FormData();
+            formData.append('username', 'nombreDeUsuario');
+            formData.append('file', this.selectedFile);
+
+            try {
+                const response = await axios.post(endpoint, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+                console.log(response.data);
+
+                if (response.data.status == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            } catch (error) {
+                // console.error(error);
+                return false;
+            }
+        },
+
+        async getUnfollowers(user) {
+            const apiUrl = `http://127.0.0.1:8000/api/unfollowers/${user}`;
+
+            try {
+                const response = await axios.get(apiUrl);
+
+                console.log(response.data);
+
+                if (response.data.status == 200) {
+                    return response.data.unfollowers;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                // console.error(error);
+                return false;
+            }
+        },
+
+        async getFans(user) {
+            const apiUrl = `http://127.0.0.1:8000/api/unfollowing/${user}`;
+
+            try {
+                const response = await axios.get(apiUrl);
+
+                console.log(response.data);
+
+                if (response.data.status == 200) {
+                    return response.data.unfollowing;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                // console.error(error);
+                return false;
+            }
+        },
+
+        loadPageData() {
+
+            console.log('aqui');
+            if (this.unfollowers) {
+                // Calcula el índice de inicio y final de los elementos en la página actual
+                const startIndex = (this.currentPagination - 1) * this.itemsPerPage;
+                const endIndex = startIndex + this.itemsPerPage;
+
+                // Filtra los elementos que deben mostrarse en la página actual
+                this.visibleItems = this.unfollowers.slice(startIndex, endIndex);
+            }
         }
+    },
+
+    computed: {
+        // Calcula el número total de páginas
+        totalPages() {
+            console.log('aqui 2');
+            return Math.ceil(this.unfollowers.length / this.itemsPerPage);
+        },
+    },
+
+    watch: {
+        currentPagination(newPage) {
+            this.loadPageData();
+        },
     },
 }
 </script>
 
 <style scoped>
-
 .custom-sizing {
     width: 90%;
     margin: 0 auto;
-  
+
     @media only screen and (min-width: 600px) {
         width: 75%;
         margin: 0;
     }
-  }
+}
 
 .custom-sizing-card {
     width: 90%;

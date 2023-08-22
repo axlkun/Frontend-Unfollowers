@@ -39,7 +39,7 @@ export default {
   watch: {
     '$route.path'(newPath) {
       this.currentRoute = newPath;
-      console.log('Ruta actual:', newPath);
+      // console.log('Ruta actual:', newPath);
     },
   },
 

@@ -78,15 +78,14 @@
                             <div class="d-flex flex-sm-row flex-column">
                                 <v-btn size="x-small" class="ma-2" variant="tonal" color="grey-darken-3" :href="item.enlace"
                                     target="_blank">Ver perfil</v-btn>
-                                <v-btn size="x-small" class="ma-2" variant="tonal" color="pink" :href="item.enlace"
-                                    target="_blank">Dejar de seguir<v-tooltip
-                                    activator="parent"
-                                    location="top"
-                                  >Visitar perfil y quitar de la lista</v-tooltip></v-btn>
+                                <v-btn size="x-small" class="ma-2" variant="tonal" color="pink"
+                                    @click="removeItem(index, 'unfollowers')">Quitar de la lista<v-tooltip activator="parent"
+                                        location="top">Indica que ya lo dejaste de seguir</v-tooltip></v-btn>
                             </div>
                         </div>
 
-                        <v-pagination v-model="currentPaginationUnfollowers" :length="totalPagesUnfollowers" @input="loadPageDataUnfollowers" :total-visible="5" rounded="circle"></v-pagination>
+                        <v-pagination v-model="currentPaginationUnfollowers" :length="totalPagesUnfollowers"
+                            @input="loadPageDataUnfollowers" :total-visible="5" rounded="circle"></v-pagination>
                     </div>
                 </v-window-item>
 
@@ -94,7 +93,7 @@
                     <div class="custom-sizing-card pa-2 text-center bg-yellow-lighten-5 text-yellow-darken-4">
                         <p>{{ fans.length }} usuarios no sigues de vuelta</p>
                     </div>
-                    
+
                     <div>
                         <div v-for="(item, index) in visibleItemsFans" :key="index"
                             class="d-flex justify-space-between align-center custom-sizing-card bg-white pa-5 mb-5"
@@ -111,20 +110,20 @@
                             <div class="d-flex flex-sm-row flex-column">
                                 <v-btn size="x-small" class="ma-2" variant="tonal" color="grey-darken-3" :href="item.enlace"
                                     target="_blank">Ver perfil</v-btn>
-                                <v-btn size="x-small" class="ma-2" variant="tonal" color="green-darken-4" :href="item.enlace"
-                                    target="_blank">Seguir<v-tooltip
-                                    activator="parent"
-                                    location="top"
-                                  >Visitar perfil y quitar de la lista</v-tooltip></v-btn>
+                                <v-btn size="x-small" class="ma-2" variant="tonal" color="green-darken-4"
+                                    @click="removeItem(index, 'fans')">Quitar de la lista<v-tooltip activator="parent"
+                                        location="top">Indica que ya lo sigues</v-tooltip></v-btn>
                             </div>
                         </div>
 
-                        <v-pagination v-model="currentPaginationFans" :length="totalPagesFans" @input="loadPageDataFans" :total-visible="5" rounded="circle"></v-pagination>
+                        <v-pagination v-model="currentPaginationFans" :length="totalPagesFans" @input="loadPageDataFans"
+                            :total-visible="5" rounded="circle"></v-pagination>
                     </div>
                 </v-window-item>
             </v-window>
         </v-sheet>
 
+        <!-- Utilidades -->
         <v-snackbar v-model="alert" min-height="80px" transition="scroll-y-reverse-transition">
             {{ alertText }}
 
@@ -134,6 +133,10 @@
                 </v-btn>
             </template>
         </v-snackbar>
+
+        <v-overlay :model-value="isLoading" class="align-center justify-center">
+            <v-progress-circular color="pink" indeterminate size="64"></v-progress-circular>
+        </v-overlay>
     </div>
 </template>
 
@@ -145,8 +148,10 @@ import { scrollToSection } from '../utils/utils';
 export default {
 
     data: () => ({
+
         currentPage: '/results',
         scrollToSection,
+
         rules: [
             value => {
                 return !value || !value.length || value[0].size < 5000000 || 'El archivo ZIP debe pesar menos de 5MB'
@@ -162,10 +167,12 @@ export default {
         fans: null,
 
         itemsPerPage: 10,
-        currentPaginationUnfollowers: 1, 
-        visibleItemsUnfollowers: [], 
+        currentPaginationUnfollowers: 1,
+        visibleItemsUnfollowers: [],
         currentPaginationFans: 1,
-        visibleItemsFans: []
+        visibleItemsFans: [],
+
+        isLoading: false
 
     }),
 
@@ -182,43 +189,58 @@ export default {
 
         // Realizamos la solicitud a la API 
         async requestAPI() {
-            // Validar si se ha seleccionado un archivo ZIP
-            if (!this.selectedFile) {
-                this.alertText = 'No se ha seleccionado el archivo ZIP.';
+
+            try {
+
+                // Validar si se ha seleccionado un archivo ZIP
+                if (!this.selectedFile) {
+                    this.alertText = 'No se ha seleccionado el archivo ZIP.';
+                    this.alert = true;
+                    return;
+                }
+
+                // Obtener el nombre de usuario del archivo ZIP
+                const user = this.getUser();
+
+                if (!user) {
+                    this.alertText = 'Lo siento, parece que el nombre del archivo ZIP no es el original o no es el ZIP esperado.';
+                    this.alert = true;
+                    return;
+                }
+
+                this.isLoading = true; // Mostrar el loader
+
+                // Enviar el archivo ZIP y verificar si se envió correctamente
+                const sendZip = await this.sendZIP();
+
+                if (!sendZip) {
+                    this.isLoading = false;
+                    this.alertText = 'Se ha producido un error al enviar el archivo ZIP. Inténtalo más tarde.';
+                    this.alert = true;
+                    return;
+                }
+
+                // Obtener la lista de unfollowers y fans
+                this.unfollowers = await this.getUnfollowers(user);
+                this.fans = await this.getFans(user);
+
+                // Verificar si ocurrió un error en las solicitudes de la lista de unfollowers y fans
+                if (!this.unfollowers && !this.fans) {
+                    this.isLoading = false;
+                    this.alertText = 'Se ha producido un error al obtener la lista de unfollowers y fans. Inténtalo más tarde.';
+                    this.alert = true;
+                }
+
+                this.loadPageDataUnfollowers();
+                this.loadPageDataFans();
+
+            } catch (error) {
+                console.error('Error en la función requestAPI:', error);
+                this.alertText = 'Se ha producido un error inesperado. Inténtalo más tarde.';
                 this.alert = true;
-                return;
+            } finally {
+                this.isLoading = false;
             }
-
-            // Obtener el nombre de usuario del archivo ZIP
-            const user = this.getUser();
-
-            if (!user) {
-                this.alertText = 'Lo siento, parece que el nombre del archivo ZIP no es el original o no es el ZIP esperado.';
-                this.alert = true;
-                return;
-            }
-
-            // Enviar el archivo ZIP y verificar si se envió correctamente
-            const sendZip = await this.sendZIP();
-
-            if (!sendZip) {
-                this.alertText = 'Se ha producido un error al enviar el archivo ZIP. Inténtalo más tarde.';
-                this.alert = true;
-                return;
-            }
-
-            // Obtener la lista de unfollowers y fans
-            this.unfollowers = await this.getUnfollowers(user);
-            this.fans = await this.getFans(user);
-
-            // Verificar si ocurrió un error en las solicitudes de la lista de unfollowers y fans
-            if (!this.unfollowers && !this.fans) {
-                this.alertText = 'Se ha producido un error al obtener la lista de unfollowers y fans. Inténtalo más tarde.';
-                this.alert = true;
-            }
-
-            this.loadPageDataUnfollowers();
-            this.loadPageDataFans();
         },
 
         // Limpiamos de memoria el archivo deseleccionado
@@ -260,7 +282,6 @@ export default {
                         'Content-Type': 'multipart/form-data',
                     },
                 });
-                console.log(response.data);
 
                 if (response.data.status == 200) {
                     return true;
@@ -269,7 +290,6 @@ export default {
                 }
 
             } catch (error) {
-                // console.error(error);
                 return false;
             }
         },
@@ -280,15 +300,12 @@ export default {
             try {
                 const response = await axios.get(apiUrl);
 
-                console.log(response.data);
-
                 if (response.data.status == 200) {
                     return response.data.unfollowers;
                 } else {
                     return false;
                 }
             } catch (error) {
-                // console.error(error);
                 return false;
             }
         },
@@ -299,15 +316,12 @@ export default {
             try {
                 const response = await axios.get(apiUrl);
 
-                console.log(response.data);
-
                 if (response.data.status == 200) {
                     return response.data.unfollowing;
                 } else {
                     return false;
                 }
             } catch (error) {
-                // console.error(error);
                 return false;
             }
         },
@@ -334,7 +348,23 @@ export default {
                 // Filtra los elementos que deben mostrarse en la página actual
                 this.visibleItemsFans = this.fans.slice(startIndex, endIndex);
             }
-        }
+        },
+
+        removeItem(index, dataset) {
+
+            if (dataset == 'unfollowers') {
+                this.unfollowers.splice(index, 1);
+                this.loadPageDataUnfollowers();
+            }
+
+            if (dataset == 'fans') {
+                this.fans.splice(index, 1);
+                this.loadPageDataFans();
+            }
+
+        },
+
+
     },
 
     computed: {

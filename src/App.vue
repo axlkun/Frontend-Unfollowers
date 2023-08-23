@@ -1,5 +1,7 @@
 <template>
   <v-app id="app">
+
+    <!-- header -->
     <v-app-bar class="bg-grey-lighten-4" :elevation="0">
       <v-toolbar-title @click="redirectToHome" style="cursor: pointer;"><v-icon>
           <img src="src/assets/logo.svg" alt="Icono SVG" style="width: 24px; height: 24px;" />
@@ -8,10 +10,12 @@
       <v-btn @click="scrollToSection('contact', currentRoute)" text>Contacto</v-btn>
     </v-app-bar>
 
+    <!-- contenido principal que cambia acorde a la ruta -->
     <main>
       <router-view></router-view>
     </main>
 
+    <!-- footer -->
     <v-footer class="text-center d-flex flex-column" color="pink">
       <div class="ma-1">
         {{ new Date().getFullYear() }} — <strong>Unfollowers</strong>
@@ -37,9 +41,8 @@ import { scrollToSection } from './utils/utils';
 
 export default {
   watch: {
-    '$route.path'(newPath) {
+    '$route.path'(newPath) { // observa cambios en las rutas que se visitan
       this.currentRoute = newPath;
-      // console.log('Ruta actual:', newPath);
     },
   },
 
@@ -50,9 +53,9 @@ export default {
   },
   
   methods: {
-    scrollToSection,
+    scrollToSection, // se declara la función importada
 
-    redirectToHome() {
+    redirectToHome() { // función que reedirige al home
       this.$router.push('/');
     }
   },
@@ -65,15 +68,37 @@ export default {
 </script>
 
 <style>
-.reset-style {
+.custom-sizing {
+  width: 90%;
+  margin: 0 auto;
+
+  @media only screen and (min-width: 600px) {
+      width: 75%;
+      margin: 0;
+  }
+}
+
+.custom-sizing-img { /* adapta las imagenes */
+  max-width: 250px; /* vista móvil */
+  max-height: 250px;
+  margin: 0 auto;
+
+  @media only screen and (min-width: 600px) { /* resto de pantallas */
+      max-width: 550px;
+      max-height: 550px;
+      margin: -70px -20px;
+  }
+}
+
+.reset-style { /* le quita los estilos a los enlaces */
   text-decoration: none;
   color: inherit;
 }
 
-.section-mobile {
-  padding: 60px 0 0 0;
+.section-mobile { /* utilidad para la visualización en vista móvil */
+  padding: 60px 0 0 0; /* vista móvil */
 
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 600px) { /* resto de pantallas */
     padding: 0;
   }
 }

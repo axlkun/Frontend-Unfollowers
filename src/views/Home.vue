@@ -1,6 +1,7 @@
 <template>
     <div class="section-mobile">
 
+        <!-- Seccion de inicio -->
         <v-sheet class="d-flex flex-sm-row flex-column justify-center align-center bg-grey-lighten-4"
             style="min-height: 100vh">
             <v-sheet class="d-flex flex-column justify-center bg-grey-lighten-4">
@@ -23,10 +24,6 @@
 
                 <v-sheet class="w-100 d-flex flex-column justify-center align-center bg-grey-lighten-4">
 
-                    <!-- <v-file-input :rules="rules" accept=".zip" label="Selecciona el archivo ZIP" @change="handleFileChange"
-                        class="custom-sizing" @click:clear="clearFile">
-                    </v-file-input> -->
-
                     <v-sheet class="d-flex flex-sm-row flex-column text-center mt-5 justify-center w-100 bg-grey-lighten-4">
                         <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated" href="/results" class="ma-3"
                             color="pink">
@@ -48,7 +45,8 @@
             </v-sheet>
         </v-sheet>
 
-        <v-sheet class="d-flex flex-column justify-center" style="min-height: 100vh" id="steps">
+        <!-- Seccion del tutorial -->
+        <v-sheet class="d-flex flex-column justify-center custom-sizing mx-auto" style="min-height: 100vh" id="steps">
 
             <v-sheet class="pa-5 text-center">
                 <h2 class="text-h4 ma-1 font-weight-black text-pink">¿Cómo funciona?</h2>
@@ -56,7 +54,7 @@
                     unfollowers</p>
             </v-sheet>
 
-            <v-expansion-panels class="custom-sizing mx-auto">
+            <v-expansion-panels>
                 <v-expansion-panel v-for="item in stepsItems" :key="item.id" :class="item.color" class="ma-5">
                     <v-expansion-panel-title expand-icon="mdi-plus" collapse-icon="mdi-minus" class="text-h6"
                         style="min-height: 80px" :class="item.color2">
@@ -70,6 +68,7 @@
 
         </v-sheet>
 
+        <!-- seccion de Por que Unfollowers -->
         <v-sheet class="d-flex flex-column justify-center bg-grey-lighten-4" style="min-height: 100vh">
             <v-sheet class="pa-5 text-center bg-grey-lighten-4">
                 <h2 class="text-h4 ma-1 font-weight-black text-pink">¿Por qué usar Unfollowers?</h2>
@@ -92,6 +91,7 @@
             </v-sheet>
         </v-sheet>
 
+        <!-- seccion de contacto  -->
         <v-sheet class="d-flex flex-column align-center justify-center bg-white" style="min-height: 100vh;" id="contact">
             <v-sheet class="pa-5 text-center bg-white custom-sizing-contacto">
                 <h2 class="text-sm-h3 text-h4 ma-1 font-weight-black text-pink">Contáctame</h2>
@@ -114,13 +114,9 @@ import { scrollToSection } from '../utils/utils';
 export default {
 
     data: () => ({
-        currentPage: '/',
-        rules: [
-            value => {
-                return !value || !value.length || value[0].size < 5000000 || 'El archivo ZIP debe pesar menos de 5MB'
-            },
-        ],
-        stepsItems: [
+        currentPage: '/', /* indica que estamos en la pagina de inicio */
+        
+        stepsItems: [ /* texto para la seccion de tutorial */
             {
                 id: 1,
                 color: 'bg-green-lighten-5',
@@ -146,7 +142,7 @@ export default {
                 description: 'En Unfollowers.com, haz clic en "Selecciona el archivo ZIP" para abrir el explorador de archivos y elige el archivo ZIP que descargaste previamente. Una vez cargado el archivo da clic en "Buscar" y conoce los resultados!',
             }
         ],
-        whyItems: [
+        whyItems: [ /* texto para la seccion de por que unfollowers */
             {
                 id: 1,
                 icon: 'mdi-security',
@@ -170,7 +166,7 @@ export default {
 
     methods: {
 
-        scrollToSection
+        scrollToSection /* se delcara el metodo importado */
 
     }
 }
@@ -178,46 +174,25 @@ export default {
 </script>
 
 <style scoped>
-.custom-sizing {
-    width: 90%;
-    margin: 0 auto;
-  
-    @media only screen and (min-width: 600px) {
-        width: 75%;
-        margin: 0;
-    }
-  }
 
-.custom-sizing-img {
-    max-width: 250px;
-    max-height: 250px;
-    margin: 0 auto;
-
-    @media only screen and (min-width: 600px) {
-        max-width: 550px;
-        max-height: 550px;
-        margin: -70px 0;
-    }
-}
-
-.custom-sizing-img-contacto {
-    max-width: 300px;
+.custom-sizing-img-contacto { /* adapta la imagen de contacto*/
+    max-width: 300px; /* vista movil */
     max-height: 400px;
     margin: -50px auto;
 
-    @media only screen and (min-width: 600px) {
+    @media only screen and (min-width: 600px) { /* resto de vistas */
         max-width: 550px;
         max-height: 550px;
         margin: -70px 0;
     }
 }
 
-.custom-sizing-contacto {
-    max-width: 400px;
+.custom-sizing-contacto { /* adapta la sección de contacto*/
+    max-width: 400px; /* vista movil */
     max-height: 400px;
     margin: 0 auto;
 
-    @media only screen and (min-width: 600px) {
+    @media only screen and (min-width: 600px) { /* resto de vistas */
         max-width: 650px;
         max-height: 650px;
     }

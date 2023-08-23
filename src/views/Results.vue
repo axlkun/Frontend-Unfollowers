@@ -1,6 +1,7 @@
 <template>
     <div class="section-mobile">
 
+        <!-- seccion para ingresar el zip -->
         <v-sheet class="d-flex flex-sm-row flex-column justify-center align-center bg-grey-lighten-4"
             style="min-height: 100vh">
             <v-sheet class="d-flex flex-column justify-center bg-grey-lighten-4">
@@ -44,6 +45,7 @@
             </v-sheet>
         </v-sheet>
 
+        <!-- seccion de resultados -->
         <v-sheet v-if="unfollowers != null" class="d-flex flex-column bg-white pt-sm-16 pt-0" style="min-height: 100vh">
 
             <v-tabs v-model="tab" fixed-tabs class="bg-transparent w-100 ma-5">
@@ -56,6 +58,8 @@
             </v-tabs>
 
             <v-window v-model="tab">
+
+                <!-- seccion de unfollowers -->
                 <v-window-item key="unfollowers" value="unfollowers" class="bg-transparent mb-sm-0 mb-5">
 
                     <div class="custom-sizing-card pa-2 text-center bg-yellow-lighten-5 text-yellow-darken-4">
@@ -89,6 +93,7 @@
                     </div>
                 </v-window-item>
 
+                <!-- seccion de fans -->
                 <v-window-item key="fans" value="fans">
                     <div class="custom-sizing-card pa-2 text-center bg-yellow-lighten-5 text-yellow-darken-4">
                         <p>{{ fans.length }} usuarios no sigues de vuelta</p>
@@ -124,6 +129,8 @@
         </v-sheet>
 
         <!-- Utilidades -->
+
+        <!-- notificacion -->
         <v-snackbar v-model="alert" min-height="80px" transition="scroll-y-reverse-transition">
             {{ alertText }}
 
@@ -134,6 +141,7 @@
             </template>
         </v-snackbar>
 
+        <!-- loader -->
         <v-overlay :model-value="isLoading" class="align-center justify-center">
             <v-progress-circular color="pink" indeterminate size="64"></v-progress-circular>
         </v-overlay>
@@ -149,19 +157,21 @@ export default {
 
     data: () => ({
 
-        currentPage: '/results',
-        scrollToSection,
+        currentPage: '/results', //pagina actual 
+        scrollToSection, //se importa la funcion de scroll o redireccion
 
-        rules: [
+        rules: [ // reglas de validacion del zip
             value => {
                 return !value || !value.length || value[0].size < 5000000 || 'El archivo ZIP debe pesar menos de 5MB'
             },
         ],
-        selectedFile: null,
+        selectedFile: null, // bandera para detectar el zip
 
+        // notificacion
         alert: false,
         alertText: '',
 
+        // seccion de resultados
         tab: 'unfollowers',
         unfollowers: null,
         fans: null,
@@ -269,7 +279,7 @@ export default {
             return false;
         },
 
-        async sendZIP() {
+        async sendZIP() { //peticion al endpoint para mandar el zip
             const endpoint = 'http://127.0.0.1:8000/api/store';
 
             const formData = new FormData();
@@ -294,7 +304,7 @@ export default {
             }
         },
 
-        async getUnfollowers(user) {
+        async getUnfollowers(user) { // peticion al endpoint para obtener unfollowers
             const apiUrl = `http://127.0.0.1:8000/api/unfollowers/${user}`;
 
             try {
@@ -310,7 +320,7 @@ export default {
             }
         },
 
-        async getFans(user) {
+        async getFans(user) { // peticion al endpoint para obtener fans
             const apiUrl = `http://127.0.0.1:8000/api/unfollowing/${user}`;
 
             try {
@@ -350,7 +360,8 @@ export default {
             }
         },
 
-        removeItem(index, dataset) {
+        // elimina registros del arreglo original y vuelve a cargar los resultados de la paginacion
+        removeItem(index, dataset) { 
 
             if (dataset == 'unfollowers') {
                 this.unfollowers.splice(index, 1);
@@ -395,15 +406,6 @@ export default {
 </script>
 
 <style scoped>
-.custom-sizing {
-    width: 90%;
-    margin: 0 auto;
-
-    @media only screen and (min-width: 600px) {
-        width: 75%;
-        margin: 0;
-    }
-}
 
 .custom-sizing-card {
     width: 90%;
@@ -415,15 +417,4 @@ export default {
     }
 }
 
-.custom-sizing-img {
-    max-width: 250px;
-    max-height: 250px;
-    margin: 0 auto;
-
-    @media only screen and (min-width: 600px) {
-        max-width: 550px;
-        max-height: 550px;
-        margin: -70px 0;
-    }
-}
 </style>

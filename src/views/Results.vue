@@ -83,13 +83,14 @@
                                 <v-btn size="x-small" class="ma-2" variant="tonal" color="grey-darken-3" :href="item.enlace"
                                     target="_blank">Ver perfil</v-btn>
                                 <v-btn size="x-small" class="ma-2" variant="tonal" color="pink"
-                                    @click="removeItem(index, 'unfollowers')">Quitar de la lista<v-tooltip activator="parent"
-                                        location="top">Indica que ya lo dejaste de seguir</v-tooltip></v-btn>
+                                    @click="removeItem(index, 'unfollowers')">Quitar de la lista<v-tooltip
+                                        activator="parent" location="top">Indica que ya lo dejaste de
+                                        seguir</v-tooltip></v-btn>
                             </div>
                         </div>
 
                         <v-pagination v-model="currentPaginationUnfollowers" :length="totalPagesUnfollowers"
-                            @input="loadPageDataUnfollowers" :total-visible="5" rounded="circle"></v-pagination>
+                            @input="loadPageData('unfollowers')" :total-visible="5" rounded="circle"></v-pagination>
                     </div>
                 </v-window-item>
 
@@ -121,7 +122,7 @@
                             </div>
                         </div>
 
-                        <v-pagination v-model="currentPaginationFans" :length="totalPagesFans" @input="loadPageDataFans"
+                        <v-pagination v-model="currentPaginationFans" :length="totalPagesFans" @input="loadPageData('fans')"
                             :total-visible="5" rounded="circle"></v-pagination>
                     </div>
                 </v-window-item>
@@ -241,8 +242,8 @@ export default {
                     this.alert = true;
                 }
 
-                this.loadPageDataUnfollowers();
-                this.loadPageDataFans();
+                this.loadPageData('unfollowers');
+                this.loadPageData('fans');
 
             } catch (error) {
                 console.error('Error en la función requestAPI:', error);
@@ -336,44 +337,26 @@ export default {
             }
         },
 
-        loadPageDataUnfollowers() {
-
-            if (this.unfollowers) {
-                // Calcula el índice de inicio y final de los elementos en la página actual
-                const startIndex = (this.currentPaginationUnfollowers - 1) * this.itemsPerPage;
+        loadPageData(dataset) {
+            if (this[dataset]) {
+                const capitalDataset = this.capitalizeFirstLetter(dataset);
+                const startIndex = (this[`currentPagination${capitalDataset}`] - 1) * this.itemsPerPage;
                 const endIndex = startIndex + this.itemsPerPage;
 
-                // Filtra los elementos que deben mostrarse en la página actual
-                this.visibleItemsUnfollowers = this.unfollowers.slice(startIndex, endIndex);
+                this[`visibleItems${capitalDataset}`] = this[dataset].slice(startIndex, endIndex);
             }
         },
 
-        loadPageDataFans() {
-
-            if (this.fans) {
-                // Calcula el índice de inicio y final de los elementos en la página actual
-                const startIndex = (this.currentPaginationFans - 1) * this.itemsPerPage;
-                const endIndex = startIndex + this.itemsPerPage;
-
-                // Filtra los elementos que deben mostrarse en la página actual
-                this.visibleItemsFans = this.fans.slice(startIndex, endIndex);
+        removeItem(index, dataset) {
+            if (this[dataset]) {
+                this[dataset].splice(index, 1);
+                this.loadPageData(dataset);
             }
         },
 
-        // elimina registros del arreglo original y vuelve a cargar los resultados de la paginacion
-        removeItem(index, dataset) { 
-
-            if (dataset == 'unfollowers') {
-                this.unfollowers.splice(index, 1);
-                this.loadPageDataUnfollowers();
-            }
-
-            if (dataset == 'fans') {
-                this.fans.splice(index, 1);
-                this.loadPageDataFans();
-            }
-
-        },
+        capitalizeFirstLetter(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
 
 
     },
@@ -395,18 +378,17 @@ export default {
 
         // Detecta cambios en v-pagination
         currentPaginationUnfollowers(newPage) {
-            this.loadPageDataUnfollowers();
+            this.loadPageData('unfollowers');
         },
 
         currentPaginationFans(newPage) {
-            this.loadPageDataFans();
+            this.loadPageData('fans');
         },
     },
 }
 </script>
 
 <style scoped>
-
 .custom-sizing-card {
     width: 90%;
     margin: 0 auto;
@@ -416,5 +398,4 @@ export default {
         margin: 0 auto;
     }
 }
-
 </style>

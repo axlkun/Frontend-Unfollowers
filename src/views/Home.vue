@@ -9,7 +9,7 @@
                         en <span class="text-pink">Instagram</span>
                         <a href="https://www.instagram.com/" target="_blank">
                             <v-icon>
-                                <img src="src/assets/instagram-logo.svg" alt="Icono SVG"
+                                <img :src="instagramLogo" alt="Icono SVG"
                                     style="width: 32px; height: 32px;" />
                             </v-icon>
                         </a>
@@ -40,7 +40,7 @@
                 <v-alert class="custom-sizing" color="green-darken-4" icon="mdi mdi-security" title="Sin Contraseñas"
                     text="Unfollowers nunca solicita tus credenciales de Instagram para funcionar. Tu información personal está completamente a salvo."
                     variant="tonal"></v-alert>
-                <img src="src/assets/imagen-home.svg" alt="Icono SVG" class="custom-sizing-img" />
+                <img :src="imgHome" alt="Icono SVG" class="custom-sizing-img" />
             </v-sheet>
         </v-sheet>
 
@@ -102,17 +102,25 @@
                 </v-btn>
             </v-sheet>
 
-            <img src="src/assets/imagen-contacto.svg" alt="Icono SVG" class="custom-sizing-img-contacto" />
+            <img :src="imgContacto" alt="Icono SVG" class="custom-sizing-img-contacto" />
         </v-sheet>
     </div>
 </template>
 
 <script>
 import { scrollToSection } from '../utils/utils';
+import instagramLogo from '../assets/instagram-logo.svg';
+import imgHome from '../assets/imagen-home.svg';
+import imgContacto from '../assets/imagen-contacto.svg';
+
 
 export default {
 
     data: () => ({
+        instagramLogo,
+        imgContacto,
+        imgHome,
+        
         currentPage: '/', /* indica que estamos en la pagina de inicio */
         
         stepsItems: [ /* texto para la seccion de tutorial */

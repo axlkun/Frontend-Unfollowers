@@ -10,7 +10,7 @@
                         y <span class="text-pink">Unfollowers</span>
                         <a href="https://www.instagram.com/" target="_blank">
                             <v-icon>
-                                <img src="src/assets/instagram-logo.svg" alt="Icono SVG"
+                                <img :src="instagramLogo" alt="Icono SVG"
                                     style="width: 32px; height: 32px;" />
                             </v-icon>
                         </a>
@@ -41,7 +41,7 @@
             </v-sheet>
 
             <v-sheet class="mt-10 d-flex flex-column justify-center bg-grey-lighten-4">
-                <img src="src/assets/imagen-results.svg" alt="Icono SVG" class="custom-sizing-img" />
+                <img :src="imgResults" alt="Icono SVG" class="custom-sizing-img" />
             </v-sheet>
         </v-sheet>
 
@@ -153,11 +153,15 @@
 
 import axios from 'axios';
 import { scrollToSection } from '../utils/utils';
+import instagramLogo from '../assets/instagram-logo.svg';
+import imgResults from '../assets/imagen-results.svg';
 
 export default {
 
     data: () => ({
 
+        instagramLogo,
+        imgResults,
         currentPage: '/results', //pagina actual 
         scrollToSection, //se importa la funcion de scroll o redireccion
 

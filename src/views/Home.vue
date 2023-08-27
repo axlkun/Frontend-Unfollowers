@@ -9,8 +9,7 @@
                         en <span class="text-pink">Instagram</span>
                         <a href="https://www.instagram.com/" target="_blank">
                             <v-icon>
-                                <img :src="instagramLogo" alt="Icono SVG"
-                                    style="width: 32px; height: 32px;" />
+                                <img :src="instagramLogo" alt="Icono SVG" style="width: 32px; height: 32px;" />
                             </v-icon>
                         </a>
                     </h1>
@@ -24,12 +23,13 @@
                 <v-sheet class="w-100 d-flex flex-column justify-center align-center bg-grey-lighten-4">
 
                     <v-sheet class="d-flex flex-sm-row flex-column text-center mt-5 justify-center w-100 bg-grey-lighten-4">
-                        <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated" href="/results" class="ma-3"
+                        <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated" @click="redirectToResults" class="ma-3"
                             color="pink">
                             Quién no me sigue
                         </v-btn>
 
-                        <v-btn @click="scrollToSection('steps',currentPage)" prepend-icon="mdi mdi-help" variant="tonal" class="ma-3">
+                        <v-btn @click="scrollToSection('steps', currentPage)" prepend-icon="mdi mdi-help" variant="tonal"
+                            class="ma-3">
                             Como funciona
                         </v-btn>
                     </v-sheet>
@@ -120,9 +120,9 @@ export default {
         instagramLogo,
         imgContacto,
         imgHome,
-        
+
         currentPage: '/', /* indica que estamos en la pagina de inicio */
-        
+
         stepsItems: [ /* texto para la seccion de tutorial */
             {
                 id: 1,
@@ -173,36 +173,43 @@ export default {
 
     methods: {
 
-        scrollToSection /* se delcara el metodo importado */
+        scrollToSection, /* se delcara el metodo importado */
 
+        redirectToResults() {
+            // Realiza la redirección a la página '/results'
+            this.$router.push('/results');
+        }
     }
 }
 
 </script>
 
 <style scoped>
-
-.custom-sizing-img-contacto { /* adapta la imagen de contacto*/
-    max-width: 300px; /* vista movil */
+.custom-sizing-img-contacto {
+    /* adapta la imagen de contacto*/
+    max-width: 300px;
+    /* vista movil */
     max-height: 400px;
     margin: -50px auto;
 
-    @media only screen and (min-width: 600px) { /* resto de vistas */
+    @media only screen and (min-width: 600px) {
+        /* resto de vistas */
         max-width: 550px;
         max-height: 550px;
         margin: -70px 0;
     }
 }
 
-.custom-sizing-contacto { /* adapta la sección de contacto*/
-    max-width: 400px; /* vista movil */
+.custom-sizing-contacto {
+    /* adapta la sección de contacto*/
+    max-width: 400px;
+    /* vista movil */
     max-height: 400px;
     margin: 0 auto;
 
-    @media only screen and (min-width: 600px) { /* resto de vistas */
+    @media only screen and (min-width: 600px) {
+        /* resto de vistas */
         max-width: 650px;
         max-height: 650px;
     }
-}
-
-</style>
+}</style>

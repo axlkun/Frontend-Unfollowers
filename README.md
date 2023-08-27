@@ -22,6 +22,11 @@ This template should help get you started developing with Vue 3 in Vite. The tem
   npm run serve
 ```
 
+## Run For Production
+```bash
+  npm run build
+```
+
 ## License
 
 Copyright (c) 2023-present Axel Cruz. All rights reserved.

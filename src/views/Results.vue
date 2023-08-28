@@ -11,7 +11,7 @@
                         <a href="https://www.instagram.com/" target="_blank">
                             <v-icon>
                                 <img :src="instagramLogo" alt="Icono SVG"
-                                    style="width: 32px; height: 32px;" />
+                                    style="width: 32px; height: 32px;" loading="lazy" />
                             </v-icon>
                         </a>
                     </h1>
@@ -41,7 +41,7 @@
             </v-sheet>
 
             <v-sheet class="mt-10 d-flex flex-column justify-center bg-grey-lighten-4">
-                <img :src="imgResults" alt="Icono SVG" class="custom-sizing-img" />
+                <img :src="imgResults" alt="Icono SVG" class="custom-sizing-img" loading="lazy"/>
             </v-sheet>
         </v-sheet>
 

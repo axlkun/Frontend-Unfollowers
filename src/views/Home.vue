@@ -9,15 +9,15 @@
                         en <span class="text-pink">Instagram</span>
                         <a href="https://www.instagram.com/" target="_blank">
                             <v-icon>
-                                <img :src="instagramLogo" alt="Icono SVG" style="width: 32px; height: 32px;" />
+                                <img :src="instagramLogo" alt="Icono SVG" style="width: 32px; height: 32px;" loading="lazy" />
                             </v-icon>
                         </a>
                     </h1>
 
-                    <p class="text-h6 text-grey-darken-1 font-weight-bold">Descubre quiénes no te siguen de vuelta y a
+                    <h2 class="text-h6 text-grey-darken-1 font-weight-bold">Descubre quiénes no te siguen de vuelta y a
                         quiénes no sigues. ¡Ajusta tu círculo social de manera
                         sencilla!
-                    </p>
+                    </h2>
                 </v-sheet>
 
                 <v-sheet class="w-100 d-flex flex-column justify-center align-center bg-grey-lighten-4">
@@ -40,7 +40,7 @@
                 <v-alert class="custom-sizing" color="green-darken-4" icon="mdi mdi-security" title="Sin Contraseñas"
                     text="Unfollowers nunca solicita tus credenciales de Instagram para funcionar. Tu información personal está completamente a salvo."
                     variant="tonal"></v-alert>
-                <img :src="imgHome" alt="Icono SVG" class="custom-sizing-img" />
+                <img :src="imgHome" alt="Icono SVG" class="custom-sizing-img" loading="lazy" />
             </v-sheet>
         </v-sheet>
 
@@ -48,9 +48,8 @@
         <v-sheet class="d-flex flex-column justify-center custom-sizing mx-auto" style="min-height: 100vh" id="steps">
 
             <v-sheet class="pa-5 text-center">
-                <h2 class="text-h4 ma-1 font-weight-black text-pink">¿Cómo funciona?</h2>
-                <p class="text-h6 ma-1 font-weight-bold text-grey-darken-1">Sigue los siguientes pasos y descubre tus fans y
-                    unfollowers</p>
+                <h2 class="text-h4 ma-1 font-weight-black text-pink">¿Cómo saber quien no me sigue en Instagram?</h2>
+                <p class="text-h6 ma-1 font-weight-bold text-grey-darken-1">Sigue los siguientes pasos para utilizar Unfollowers</p>
             </v-sheet>
 
             <v-expansion-panels>
@@ -102,7 +101,7 @@
                 </v-btn>
             </v-sheet>
 
-            <img :src="imgContacto" alt="Icono SVG" class="custom-sizing-img-contacto" />
+            <img :src="imgContacto" alt="Icono SVG" class="custom-sizing-img-contacto" loading="lazy" />
         </v-sheet>
     </div>
 </template>

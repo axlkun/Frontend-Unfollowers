@@ -145,7 +145,7 @@ export default {
                 color2: 'text-yellow-darken-4',
                 icon: 'mdi-folder-upload-outline',
                 title: '3- Carga el ZIP',
-                description: 'En Unfollowers.com, haz clic en "Selecciona el archivo ZIP" para abrir el explorador de archivos y elige el archivo ZIP que descargaste previamente. Una vez cargado el archivo da clic en "Buscar" y conoce los resultados!',
+                description: 'En Unfollowerstracker.com presiona "QUIEN NO ME SIGUE". Después da clic en "Selecciona el archivo ZIP" para abrir el explorador de archivos y elige el archivo ZIP que descargaste previamente. Una vez cargado el archivo da clic en "Buscar" y conoce los resultados!',
             }
         ],
         whyItems: [ /* texto para la seccion de por que unfollowers */

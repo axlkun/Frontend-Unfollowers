@@ -31,7 +31,6 @@ export default {
         scrollToSection, // se declara la función importada
 
         redirectToHome() { // función que reedirige al home
-            console.log('aqui');
             this.$router.push('/');
         }
     },

@@ -285,7 +285,7 @@ export default {
         },
 
         async sendZIP() { //peticion al endpoint para mandar el zip
-            const endpoint = 'http://127.0.0.1:8000/api/store';
+            const endpoint = 'https://api-unfollowers.up.railway.app/api/store';
 
             const formData = new FormData();
             formData.append('username', 'nombreDeUsuario');
@@ -310,7 +310,7 @@ export default {
         },
 
         async getUnfollowers(user) { // peticion al endpoint para obtener unfollowers
-            const apiUrl = `http://127.0.0.1:8000/api/unfollowers/${user}`;
+            const apiUrl = `https://api-unfollowers.up.railway.app/api/unfollowers/${user}`;
 
             try {
                 const response = await axios.get(apiUrl);
@@ -326,7 +326,7 @@ export default {
         },
 
         async getFans(user) { // peticion al endpoint para obtener fans
-            const apiUrl = `http://127.0.0.1:8000/api/unfollowing/${user}`;
+            const apiUrl = `https://api-unfollowers.up.railway.app/api/unfollowing/${user}`;
 
             try {
                 const response = await axios.get(apiUrl);

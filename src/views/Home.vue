@@ -9,7 +9,7 @@
                         en <span class="text-pink">Instagram</span>
                         <a href="https://www.instagram.com/" target="_blank">
                             <v-icon>
-                                <img :src="instagramLogo" alt="Icono SVG" style="width: 32px; height: 32px;" loading="lazy" />
+                                <img :src="instagramLogo" alt="Icono Instagram SVG" style="width: 32px; height: 32px;" loading="lazy" />
                             </v-icon>
                         </a>
                     </h1>
@@ -40,7 +40,7 @@
                 <v-alert class="custom-sizing" color="green-darken-4" icon="mdi mdi-security" title="Sin Contraseñas"
                     text="Unfollowers nunca solicita tus credenciales de Instagram para funcionar. Tu información personal está completamente a salvo."
                     variant="tonal"></v-alert>
-                <img :src="imgHome" alt="Icono SVG" class="custom-sizing-img" loading="lazy" />
+                <img :src="imgHome" alt="Imagen Home SVG" class="custom-sizing-img" loading="lazy" />
             </v-sheet>
         </v-sheet>
 
@@ -101,7 +101,7 @@
                 </v-btn>
             </v-sheet>
 
-            <img :src="imgContacto" alt="Icono SVG" class="custom-sizing-img-contacto" loading="lazy" />
+            <img :src="imgContacto" alt="Imagen Contacto SVG" class="custom-sizing-img-contacto" loading="lazy" />
         </v-sheet>
     </div>
 </template>

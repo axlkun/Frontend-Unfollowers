@@ -7,8 +7,8 @@
             <input type="checkbox" id="menu-toggle">
             <label for="menu-toggle" class="menu-icon">&#9776;</label>
             <ul class="menu">
-                <li><a @click="scrollToSection('steps', currentRoute)">Tutorial</a></li>
-                <li><a @click="scrollToSection('contact', currentRoute)">Contacto</a></li>
+                <li><a @click="scrollToSection('steps')">Tutorial</a></li>
+                <li><a @click="scrollToSection('contact')">Contacto</a></li>
             </ul>
         </nav>
     </header>
@@ -21,12 +21,6 @@ export default {
 
     name: 'myHeader',
 
-    data() {
-        return {
-            currentRoute: '', // Aquí almacenaremos la ruta actual
-        };
-    },
-
     methods: {
         scrollToSection, // se declara la función importada
 
@@ -34,17 +28,6 @@ export default {
             this.$router.push('/');
         }
     },
-
-    watch: {
-        '$route.path'(newPath) { // observa cambios en las rutas que se visitan
-            this.currentRoute = newPath;
-        },
-    },
-
-    mounted() {
-    // Inicializa la ruta actual cuando la aplicación se carga
-    this.currentRoute = this.$route.path;
-  }
 
 }
 </script>

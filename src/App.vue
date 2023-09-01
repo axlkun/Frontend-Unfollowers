@@ -30,7 +30,6 @@
 </template>
 
 <script>
-// import { scrollToSection } from './utils/utils.js';
 import myHeader from './components/Header.vue';
 
 export default {

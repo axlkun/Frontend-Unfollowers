@@ -10,8 +10,8 @@
                         y <span class="text-pink">Unfollowers</span>
                         <a href="https://www.instagram.com/" target="_blank">
                             <v-icon>
-                                <img :src="instagramLogo" alt="Icono Instagram SVG"
-                                    style="width: 32px; height: 32px;" loading="lazy" />
+                                <img :src="instagramLogo" alt="Icono Instagram SVG" style="width: 32px; height: 32px;"
+                                    loading="lazy" />
                             </v-icon>
                         </a>
                     </h1>
@@ -41,12 +41,13 @@
             </v-sheet>
 
             <v-sheet class="mt-10 d-flex flex-column justify-center bg-grey-lighten-4">
-                <img :src="imgResults" alt="Imagen Results SVG" class="custom-sizing-img" loading="lazy"/>
+                <img :src="imgResults" alt="Imagen Results SVG" class="custom-sizing-img" loading="lazy" />
             </v-sheet>
         </v-sheet>
 
         <!-- seccion de resultados -->
-        <v-sheet v-if="unfollowers != null" class="d-flex flex-column bg-white pt-sm-16 pt-0" style="min-height: 100vh">
+        <v-sheet v-if="unfollowers != null" class="d-flex flex-column bg-white pt-sm-16 pt-0" style="min-height: 100vh"
+            id="results">
 
             <v-tabs v-model="tab" fixed-tabs class="bg-transparent w-100 ma-5">
                 <v-tab>
@@ -132,7 +133,7 @@
         <!-- Utilidades -->
 
         <!-- notificacion -->
-        <v-snackbar v-model="alert" min-height="80px" transition="scroll-y-reverse-transition">
+        <v-snackbar v-model="alert" :timeout="5000" min-height="80px" transition="scroll-y-reverse-transition">
             {{ alertText }}
 
             <template v-slot:actions>
@@ -162,7 +163,6 @@ export default {
 
         instagramLogo,
         imgResults,
-        currentPage: '/results', //pagina actual 
         scrollToSection, //se importa la funcion de scroll o redireccion
 
         rules: [ // reglas de validacion del zip
@@ -244,17 +244,23 @@ export default {
                     this.isLoading = false;
                     this.alertText = 'Se ha producido un error al obtener la lista de unfollowers y fans. Inténtalo más tarde.';
                     this.alert = true;
+                    return;
                 }
-
                 this.loadPageData('unfollowers');
                 this.loadPageData('fans');
 
             } catch (error) {
-                console.error('Error en la función requestAPI:', error);
                 this.alertText = 'Se ha producido un error inesperado. Inténtalo más tarde.';
                 this.alert = true;
             } finally {
                 this.isLoading = false;
+
+                if(this.unfollowers && this.fans){
+                    setTimeout(() => {
+                    this.scrollToSection('results');
+                }, 100);
+                }
+                
             }
         },
 

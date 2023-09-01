@@ -28,7 +28,7 @@
                             Quién no me sigue
                         </v-btn>
 
-                        <v-btn @click="scrollToSection('steps', currentPage)" prepend-icon="mdi mdi-help" variant="tonal"
+                        <v-btn @click="scrollToSection('steps')" prepend-icon="mdi mdi-help" variant="tonal"
                             class="ma-3">
                             Como funciona
                         </v-btn>
@@ -119,8 +119,6 @@ export default {
         instagramLogo,
         imgContacto,
         imgHome,
-
-        currentPage: '/', /* indica que estamos en la pagina de inicio */
 
         stepsItems: [ /* texto para la seccion de tutorial */
             {

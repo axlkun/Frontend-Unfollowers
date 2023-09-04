@@ -5,35 +5,30 @@
             style="min-height: 90vh">
             <v-sheet class="d-flex flex-column justify-center bg-grey-lighten-4">
                 <v-sheet class="custom-sizing mx-auto mb-8 bg-grey-lighten-4">
-                    <h1 class="text-sm-h2 text-h3 mb-8 font-weight-bold text-grey-darken-3">Organiza tu Lista de Seguidores
+                    <h1 class="text-sm-h2 text-h3 mb-8 font-weight-bold text-grey-darken-3">Descubre quién no te sigue de vuelta
                         en <span class="text-pink">Instagram</span>
                         <a href="https://www.instagram.com/" target="_blank">
                             <v-icon>
-                                <img :src="instagramLogo" alt="Icono Instagram SVG" style="width: 32px; height: 32px;" loading="lazy" />
+                                <img :src="instagramLogo" alt="Icono Instagram SVG" style="width: 32px; height: 32px;"
+                                    loading="lazy" />
                             </v-icon>
                         </a>
                     </h1>
 
-                    <h2 class="text-h6 text-grey-darken-1 font-weight-bold">Descubre quiénes no te siguen de vuelta y a
-                        quiénes no sigues. ¡Ajusta tu círculo social de manera
-                        sencilla!
+                    <h2 class="text-h6 text-grey-darken-1 font-weight-bold">
+                        ¡Descubre al instante quién no te sigue en Instagram sin necesidad de contraseñas! Toma el control de tu círculo social de forma sencilla y segura.
                     </h2>
-                </v-sheet>
 
-                <v-sheet class="w-100 d-flex flex-column justify-center align-center bg-grey-lighten-4">
-
-                    <v-sheet class="d-flex flex-sm-row flex-column text-center mt-5 justify-center w-100 bg-grey-lighten-4">
-                        <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated" @click="redirectToResults" class="ma-3"
-                            color="pink">
+                    <v-sheet class="d-flex flex-sm-row flex-column align-center bg-grey-lighten-4">
+                        <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated" @click="redirectToResults"
+                            class="mt-10 mx-center" color="pink">
                             Quién no me sigue
                         </v-btn>
-
-                        <v-btn @click="scrollToSection('steps')" prepend-icon="mdi mdi-help" variant="tonal"
-                            class="ma-3">
-                            Como funciona
-                        </v-btn>
                     </v-sheet>
+
                 </v-sheet>
+
+
             </v-sheet>
 
             <v-sheet class="mt-10 d-flex flex-column justify-center bg-grey-lighten-4">
@@ -44,12 +39,14 @@
             </v-sheet>
         </v-sheet>
 
-        <!-- Seccion del tutorial -->
+        <!-- Seccion del como funciona -->
         <v-sheet class="d-flex flex-column justify-center custom-sizing mx-auto" style="min-height: 100vh" id="steps">
 
             <v-sheet class="pa-5 text-center">
-                <h2 class="text-h4 ma-1 font-weight-black text-pink">¿Cómo saber quien no me sigue en Instagram?</h2>
-                <p class="text-h6 ma-1 font-weight-bold text-grey-darken-1">Sigue los siguientes pasos para utilizar Unfollowers</p>
+                <h2 class="text-h4 ma-1 font-weight-black text-pink">¿Cómo funciona Unfollowers Tracker?</h2>
+                <p class="text-h7 ma-5 font-weight-bold text-grey-darken-1">Nuestra herramienta analiza tus datos
+                    proporcionados y compara tu lista de seguidores con la lista de personas a las que sigues. Luego, te
+                    muestra quiénes no te siguen de vuelta.</p>
             </v-sheet>
 
             <v-expansion-panels>
@@ -66,17 +63,33 @@
 
         </v-sheet>
 
-        <!-- seccion de Por que Unfollowers -->
-        <v-sheet class="d-flex flex-column justify-center bg-grey-lighten-4" style="min-height: 100vh">
+        <!-- seccion del video tutorial -->
+        <v-sheet class="d-flex flex-column align-center justify-center bg-grey-lighten-4" style="min-height: 100vh">
             <v-sheet class="pa-5 text-center bg-grey-lighten-4">
-                <h2 class="text-h4 ma-1 font-weight-black text-pink">¿Por qué usar Unfollowers?</h2>
+                <h2 class="text-h4 ma-1 font-weight-black text-pink">Video tutorial: Cómo utilizar nuestra herramienta</h2>
+                <p class="text-h7 ma-5 font-weight-bold text-grey-darken-1">Aprende paso a paso cómo sacar el máximo
+                    provecho de <span class="text-pink">Unfollowers Tracker</span> para descubrir quiénes no te siguen de
+                    vuelta en Instagram.</p>
+            </v-sheet>
+
+            <v-sheet class="bg-grey-lighten-4">
+        
+                    <iframe class="video" src="https://www.youtube.com/embed/cogo5gbBJC8" title="Descubre quién no te sigue en Instagram SIN riesgos de iniciar sesión | Unfollowers Tracker" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </v-sheet>
+
+        </v-sheet>
+
+        <!-- seccion de Por que Unfollowers -->
+        <v-sheet class="d-flex flex-column justify-center" style="min-height: 100vh">
+            <v-sheet class="pa-5 text-center">
+                <h2 class="text-h4 ma-1 font-weight-black text-pink">¿Por qué usar Unfollowers Tracker?</h2>
                 <p class="text-h6 ma-1 font-weight-bold text-grey-darken-1">La manera mas segura de conocer tus unfollowers
                     y fans</p>
             </v-sheet>
 
-            <v-sheet class="d-flex flex-sm-row flex-column justify-center bg-grey-lighten-4 " style="gap: 20px;">
+            <v-sheet class="d-flex flex-sm-row flex-column justify-center" style="gap: 20px;">
                 <v-sheet v-for="item in whyItems" :key="item.id" elevation="2" max-width="400" rounded="lg" width="90%"
-                    class="pa-4 text-center bg-grey-lighten-4 custom-sizing">
+                    class="pa-4 text-center custom-sizing">
                     <v-icon class="mb-5" color="pink" :icon="item.icon" size="112"></v-icon>
 
                     <h2 class="text-h5 mb-6">{{ item.title }}</h2>
@@ -90,19 +103,32 @@
         </v-sheet>
 
         <!-- seccion de contacto  -->
-        <v-sheet class="d-flex flex-column align-center justify-center bg-white" style="min-height: 100vh;" id="contact">
-            <v-sheet class="pa-5 text-center bg-white custom-sizing-contacto">
-                <h2 class="text-sm-h3 text-h4 ma-1 font-weight-black text-pink">Contáctame</h2>
-                <p class="text-h5 ma-1 font-weight-bold text-grey-darken-1">¿Tienes alguna pregunta, inquietud o simplemente
+        <v-sheet class="d-flex flex-sm-row flex-column justify-center align-center bg-grey-lighten-4" style="min-height: 100vh;"
+            id="contact">
+            <v-sheet class="pa-5 text-center bg-grey-lighten-4 custom-sheet-size">
+                <h2 class="text-sm-h3 text-h4 ma-5 font-weight-black text-pink">Contactar</h2>
+                <p class="text-h5 ma-5 font-weight-bold text-grey-darken-1">¿Tienes alguna pregunta, inquietud o simplemente
                     quieres decir hola? No dudes en ponerte en contacto.</p>
                 <v-btn prepend-icon="mdi mdi-email-arrow-right-outline" variant="elevated"
-                    href="mailto:axelcruz.dev@gmail.com" class="ma-3" color="pink">
+                    href="mailto:axelcruz.dev@gmail.com" class="ma-5" color="pink">
                     Escribir un correo
                 </v-btn>
             </v-sheet>
 
             <img :src="imgContacto" alt="Imagen Contacto SVG" class="custom-sizing-img-contacto" loading="lazy" />
         </v-sheet>
+
+        <v-sheet class="d-flex flex-column align-center justify-center background-custom" style="min-height: 100vh;">
+            <v-sheet class="pa-5 text-center bg-transparent custom-sheet-size">
+                <h2 class="text-sm-h3 text-h4 ma-5 font-weight-black text-pink">¡Empieza ahora!</h2>
+                <p class="text-h5 ma-5 font-weight-bold text-grey-darken-1">No esperes más para descubrir quiénes no te siguen de vuelta en Instagram. Nuestra herramienta gratuita está lista para ayudarte a gestionar tu lista de seguidores.</p>
+                <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated"
+                    class="ma-5" color="pink" @click="redirectToResults">
+                    Quien no me sigue
+                </v-btn>
+            </v-sheet>
+        </v-sheet>
+
     </div>
 </template>
 
@@ -111,7 +137,6 @@ import { scrollToSection } from '../utils/utils';
 import instagramLogo from '../assets/instagram-logo.svg';
 import imgHome from '../assets/imagen-home.svg';
 import imgContacto from '../assets/imagen-contacto.svg';
-
 
 export default {
 
@@ -151,19 +176,19 @@ export default {
                 id: 1,
                 icon: 'mdi-security',
                 title: 'Seguridad',
-                description: 'Unfollowers no necesita acceso a tu cuenta. Tus datos están protegidos y seguros en todo momento.'
+                description: 'Unfollowers Tracker no necesita acceso a tu cuenta. Tus datos están protegidos y seguros en todo momento.'
             },
             {
                 id: 2,
                 icon: 'mdi-lightning-bolt',
                 title: 'Resultados Instantáneos',
-                description: 'Obtén resultados al instante. Con Unfollowers, no tienes que esperar para conocer el estado de tus seguidores. '
+                description: 'Obtén resultados al instante. Con nuestra herramienta, no tienes que esperar para conocer el estado de tus seguidores. '
             },
             {
                 id: 3,
-                icon: 'mdi-human',
-                title: 'Experiencia Intuitiva',
-                description: ' Nuestra plataforma fácil de usar te proporciona una experiencia fluida para que puedas obtener información útil sin complicaciones.'
+                icon: 'mdi-account-group',
+                title: 'Optimización de tu Círculo Social',
+                description: 'Ajusta tu lista de seguidores de manera sencilla. Identifica a aquellos que ya no te siguen y toma decisiones informadas sobre a quién seguir.'
             }
         ],
     }),
@@ -176,7 +201,8 @@ export default {
             // Realiza la redirección a la página '/results'
             this.$router.push('/results');
         }
-    }
+    },
+
 }
 
 </script>
@@ -191,22 +217,36 @@ export default {
 
     @media only screen and (min-width: 600px) {
         /* resto de vistas */
-        max-width: 550px;
-        max-height: 550px;
-        margin: -70px 0;
+        max-width: 650px;
+        max-height: 650px;
+        margin: 0 0 0 -80px;
     }
 }
 
-.custom-sizing-contacto {
+.video {
     /* adapta la sección de contacto*/
-    max-width: 400px;
     /* vista movil */
-    max-height: 400px;
-    margin: 0 auto;
+    width: 100%;
+    height: auto;
 
     @media only screen and (min-width: 600px) {
-        /* resto de vistas */
-        max-width: 650px;
-        max-height: 650px;
+        width: 640px;
+        height: 360px;
     }
-}</style>
+}
+.custom-sheet-size {
+    /* adapta la sección de contacto*/
+    /* vista movil */
+    width: 100%;
+    height: auto;
+
+    @media only screen and (min-width: 600px) {
+        width: 40%;
+    }
+}
+
+.background-custom{
+    background: radial-gradient(circle, rgba(252,228,236,1) 27%, rgba(236,239,241,1) 50%);
+}
+
+</style>

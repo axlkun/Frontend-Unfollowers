@@ -27,7 +27,7 @@
                         class="custom-sizing" @click:clear="clearFile">
                     </v-file-input>
 
-                    <v-sheet class="d-flex flex-sm-row flex-column text-center mt-5 justify-center w-100 bg-grey-lighten-4">
+                    <v-sheet class="d-flex flex-sm-row flex-column text-center mt-5 mb-5 justify-center w-100 bg-grey-lighten-4">
                         <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated" @click="requestAPI" class="ma-3"
                             color="pink">
                             Buscar
@@ -40,9 +40,9 @@
                 </v-sheet>
             </v-sheet>
 
-            <v-sheet class="mt-10 d-flex flex-column justify-center bg-grey-lighten-4">
+            <!-- <v-sheet class="mt-10 d-flex flex-column justify-center bg-grey-lighten-4">
                 <img :src="imgResults" alt="Imagen Results SVG" class="custom-sizing-img" loading="lazy" />
-            </v-sheet>
+            </v-sheet> -->
         </v-sheet>
 
         <!-- seccion de resultados -->

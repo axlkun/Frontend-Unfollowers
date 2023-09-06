@@ -1,10 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from './views/Home.vue';
-import About from './views/Results.vue';
+import Results from './views/Results.vue';
+import Privacy from './views/Privacy.vue';
+import Cookies from './views/Cookies.vue';
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/results', component: About },
+  { path: '/results', component: Results },
+  { path: '/politica-de-privacidad-unfollowerstracker', component: Privacy },
+  { path: '/politica-de-cookies-unfollowerstracker', component: Cookies },
 ];
 
 const router = createRouter({

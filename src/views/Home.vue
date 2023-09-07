@@ -2,7 +2,7 @@
     <div>
         <!-- Seccion de inicio -->
         <v-sheet class="d-flex flex-sm-row flex-column justify-center align-center bg-grey-lighten-4"
-            style="min-height: 90vh">
+            style="min-height: 90vh" id="home">
             <v-sheet class="d-flex flex-column justify-center bg-grey-lighten-4">
                 <v-sheet class="custom-sizing mx-auto mb-8 bg-grey-lighten-4">
                     <h1 class="text-sm-h2 text-h3 mb-8 font-weight-bold text-grey-darken-3">Descubre quién no te sigue de vuelta
@@ -40,7 +40,7 @@
         </v-sheet>
 
         <!-- Seccion del como funciona -->
-        <v-sheet class="d-flex flex-column justify-center custom-sizing mx-auto" style="min-height: 100vh">
+        <v-sheet class="d-flex flex-column justify-center custom-sizing mx-auto" style="min-height: 100vh" id="how-works">
 
             <v-sheet class="pa-5 text-center">
                 <h2 class="text-h4 ma-1 font-weight-black text-pink">¿Cómo funciona Unfollowers Tracker?</h2>
@@ -201,6 +201,7 @@ export default {
         redirectToResults() {
             // Realiza la redirección a la página '/results'
             this.$router.push('/results');
+            window.scrollTo(0, 0);
         }
     },
 

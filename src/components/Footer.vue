@@ -7,10 +7,10 @@
             <p>Navegacion</p>
   
             <ul>
-              <li>Inicio</li>
-              <li>¿Cómo funciona?</li>
-              <li>Tutorial</li>
-              <li>Contacto</li>
+              <li><a @click="scrollToSection('home')">Inicio</a></li>
+              <li><a @click="scrollToSection('how-works')">¿Cómo funciona?</a></li>
+              <li><a @click="scrollToSection('steps')">Tutorial</a></li>
+              <li><a @click="scrollToSection('contact')">Contacto</a></li>
               <li>Blog (construyendo)</li>
             </ul>
           </div>
@@ -19,7 +19,7 @@
             <p>Herramientas Gratis</p>
   
             <ul>
-              <li>Quien no me sigue en Instagram</li>
+              <li><a @click="redirectTo('/results')">Quien no me sigue en Instagram</a></li>
             </ul>
           </div>
   
@@ -27,8 +27,8 @@
             <p>Más</p>
   
             <ul>
-              <li>Términos</li>
-              <li>Privacidad</li>
+              <li><a @click="redirectTo('/politica-de-privacidad-unfollowerstracker')">Términos</a></li>
+              <li><a @click="redirectTo('/politica-de-cookies-unfollowerstracker')">Privacidad</a></li>
             </ul>
           </div>
           
@@ -58,6 +58,12 @@ export default {
 
     methods: {
         scrollToSection, // se declara la función importada
+
+        redirectTo(page) {
+            // Realiza la redirección a la página '/results'
+            this.$router.push(page);
+            window.scrollTo(0, 0);
+        }
 
     },
 

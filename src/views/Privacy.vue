@@ -77,23 +77,4 @@
 
 <style scoped>
 
-.privacy{
-
-    width: 90%;
-    margin: 0 auto;
-
-    @media only screen and (min-width: 600px) {
-        /* resto de vistas */
-        max-width: 70%;
-        min-height: 100vh;
-    }
-}
-
-.section{
-    margin: 20px 0;
-}
-
-.fecha{
-    color: gray;
-}
 </style>

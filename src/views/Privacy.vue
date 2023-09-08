@@ -4,16 +4,17 @@
     <v-sheet class="privacy">
 
         <div class="section">
-            <h1>Acuerdo de Privacidad y Cookies para Unfollowers Tracker</h1>
+            <h1>Política de Privacidad para Unfollowers Tracker</h1>
+            <p>Valoramos su seguridad, privacidad y derechos de datos.</p>
 
-            <p class="fecha">Fecha de entrada en vigencia 06/09/2023</p>
+            <p class="fecha">Fecha de entrada en vigencia 07/09/2023</p>
         </div>
         
     
         <div class="section">
             <h2>1. Introducción</h2>
     
-            <p>Bienvenido a UnfollowersTracker. En este acuerdo de privacidad y cookies, explicamos cómo recopilamos, utilizamos y protegemos la información que recopilamos de nuestros usuarios. Respetamos su privacidad y estamos comprometidos a proteger su información personal.</p>
+            <p>Esta Política de Privacidad describe nuestras políticas y procedimientos sobre la recopilación y uso de Su información cuando utiliza el servicio. Utilizamos sus datos personales para proporcionar y mejorar el servicio. Al utilizar el Servicio, usted acepta la recopilación y el uso de información de acuerdo con esta Política de Privacidad.</p>
         </div>
         
     
@@ -61,7 +62,7 @@
 
         <div class="section">
             <h2>8. Preguntas y Contacto</h2>    
-            <p>Si tiene alguna pregunta o comentario sobre este acuerdo o sobre nuestras prácticas de privacidad y cookies, no dude en ponerse en contacto con nosotros a través de axelcruz.dev@gmail.com.</p>
+            <p>Si tiene alguna pregunta o comentario sobre este acuerdo o sobre nuestras prácticas de privacidad y cookies, no dude en ponerse en contacto con nosotros a través de <a href="mailto:axelcruz.dev@gmail.com" class="">axelcruz.dev@gmail.com.</a>.</p>
         </div>
         
         

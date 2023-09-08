@@ -27,8 +27,9 @@
             <p>Más</p>
   
             <ul>
-              <li><a @click="redirectTo('/politica-de-privacidad-unfollowerstracker')">Términos</a></li>
-              <li><a @click="redirectTo('/politica-de-cookies-unfollowerstracker')">Privacidad</a></li>
+              <li><a @click="redirectTo('/terminos-y-condiciones-unfollowerstracker')">Términos</a></li>
+              <li><a @click="redirectTo('/politica-de-privacidad-unfollowerstracker')">Privacidad</a></li>
+              <li><a @click="redirectTo('/politica-de-cookies-unfollowerstracker')">Cookies</a></li>
             </ul>
           </div>
           

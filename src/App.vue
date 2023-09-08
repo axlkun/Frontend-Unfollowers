@@ -58,14 +58,20 @@ export default {
 }
 
 /* terminos y privacidad */
+
+.privacy h1{
+  color: #E91E63;
+}
+
 .privacy{
     
   width: 90%;
   margin: 0 auto;
+  line-height: 1.8;
 
   @media only screen and (min-width: 600px) {
       /* resto de vistas */
-      max-width: 70%;
+      max-width: 50%;
       min-height: 100vh;
   }
 }

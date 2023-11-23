@@ -12,9 +12,9 @@ dist
 dist-ssr
 *.local
 _redirects
-sitemap.xml
-google4fe233a8ed35afa7.html
-ads.txt
+# sitemap.xml
+# google4fe233a8ed35afa7.html
+# ads.txt
 
 # Editor directories and files
 .vscode/*

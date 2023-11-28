@@ -291,7 +291,7 @@ export default {
         },
 
         async sendZIP() { //peticion al endpoint para mandar el zip
-            const endpoint = 'https://api-unfollowers.up.railway.app/api/store';
+            const endpoint = 'https://admin.unfollowerstracker.com/api/store';
 
             const formData = new FormData();
             formData.append('username', 'nombreDeUsuario');
@@ -316,7 +316,7 @@ export default {
         },
 
         async getUnfollowers(user) { // peticion al endpoint para obtener unfollowers
-            const apiUrl = `https://api-unfollowers.up.railway.app/api/unfollowers/${user}`;
+            const apiUrl = `https://admin.unfollowerstracker.com/api/unfollowers/${user}`;
 
             try {
                 const response = await axios.get(apiUrl);
@@ -332,7 +332,7 @@ export default {
         },
 
         async getFans(user) { // peticion al endpoint para obtener fans
-            const apiUrl = `https://api-unfollowers.up.railway.app/api/unfollowing/${user}`;
+            const apiUrl = `https://admin.unfollowerstracker.com/api/unfollowing/${user}`;
 
             try {
                 const response = await axios.get(apiUrl);

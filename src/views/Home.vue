@@ -8,7 +8,10 @@
 
         <!-- seccion del video tutorial -->
         <VideoTutorial></VideoTutorial>
-        
+
+        <!-- blog section -->
+        <BlogSection></BlogSection>
+
         <!-- seccion de Por que Unfollowers -->
         <WhyUnfollowers></WhyUnfollowers>
 
@@ -24,6 +27,7 @@
 import HomeSection from '../components/HomeSection.vue';
 import HowWorks from '../components/HowWorks.vue';
 import VideoTutorial from '../components/VideoTutorial.vue';
+import BlogSection from '../components/BlogSection.vue';
 import WhyUnfollowers from '../components/WhyUnfollowers.vue';
 import ContactSection from '../components/ContactSection.vue';
 import CallToAction from '../components/CallToAction.vue';
@@ -34,6 +38,7 @@ export default {
         HomeSection,
         HowWorks,
         VideoTutorial,
+        BlogSection,
         WhyUnfollowers,
         ContactSection,
         CallToAction

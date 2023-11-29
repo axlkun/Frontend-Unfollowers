@@ -7,7 +7,7 @@
                 y fans</p>
         </v-sheet>
 
-        <v-sheet class="d-flex flex-sm-row flex-column justify-center" style="gap: 20px;">
+        <v-sheet class="d-flex flex-md-row flex-column justify-center" style="gap: 20px;">
             <v-sheet v-for="item in whyItems" :key="item.id" elevation="2" max-width="400" rounded="lg" width="90%"
                 class="pa-4 text-center custom-sizing">
                 <v-icon class="mb-5" color="pink" :icon="item.icon" size="112"></v-icon>

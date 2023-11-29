@@ -1,7 +1,7 @@
 <template>
     <v-sheet class="d-flex flex-column align-center justify-center background-custom" style="min-height: 100vh;">
         <v-sheet class="bg-transparent pa-5 custom-sheet text-center">
-            <v-chip variant="outlined" size="x-large" color="pink">
+            <v-chip variant="outlined" size="x-large" color="pink" to="/blog">
                 Blog
             </v-chip>
 

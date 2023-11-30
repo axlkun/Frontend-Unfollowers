@@ -22,7 +22,7 @@
               <li><a href="/results">Quien no me sigue en Instagram</a></li>
             </ul>
 
-            <p class="mt-2">Últimos artículos</p>
+            <p class="ultimos-acrticulos">Últimos artículos</p>
             <ul>
               <li v-for="article in blogEntry"><a :href="'/blog/' + article.slug">{{article.title}}</a></li>
           </ul>
@@ -74,7 +74,7 @@ export default {
     margin: 0 auto;
     border-bottom: 1px solid gray;
   
-    @media only screen and (min-width: 600px) {
+    @media only screen and (min-width: 960px) {
         /* resto de vistas */
         width: 100%;
     }
@@ -99,5 +99,13 @@ export default {
     &:hover{
       color: #E91E63;
     }
+  }
+
+  .ultimos-acrticulos{
+    margin-top: 35px;
+
+    @media only screen and (min-width: 960px) {
+      margin-top: 15px;
+  }
   }
 </style>

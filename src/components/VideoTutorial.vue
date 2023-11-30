@@ -1,6 +1,6 @@
 <template>
 
-    <v-sheet class="d-flex flex-column align-center justify-center bg-grey-lighten-4" id="steps">
+    <v-sheet class="d-flex flex-column align-center justify-center bg-grey-lighten-4" id="steps" style="min-height: 100vh;">
         <v-sheet class="pa-5 text-center bg-grey-lighten-4">
             <h2 class="text-h4 ma-1 font-weight-black text-pink">Video tutorial: Cómo utilizar nuestra herramienta</h2>
             <p class="text-h7 ma-5 font-weight-bold text-grey-darken-1">Aprende paso a paso cómo sacar el máximo
@@ -8,7 +8,7 @@
                 vuelta en Instagram.</p>
         </v-sheet>
 
-        <v-sheet class="video-container bg-grey-lighten-4 mb-10">
+        <v-sheet class="video-container bg-grey-lighten-4">
     
                 <iframe class="video" src="https://www.youtube.com/embed/GxOowXWueoo" title="Descubre quién no te sigue en Instagram SIN riesgos de iniciar sesión | Unfollowers Tracker" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 
@@ -35,7 +35,7 @@ export default {
     margin: 0 auto 15px auto;
 
     @media only screen and (min-width: 1024px) {
-        width: 70%;
+        width: 50%;
         
     }
 }

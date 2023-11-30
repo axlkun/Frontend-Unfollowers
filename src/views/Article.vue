@@ -3,25 +3,25 @@
 
         <v-sheet v-if="loading" class="skeleton">
             <!-- Contenedor principal -->
-            <v-sheet color="#f5f1f1">
-                <v-sheet color="#f5f1f1">
+            <v-sheet color="#F5F5F5">
+                <v-sheet color="#F5F5F5">
                     <v-row justify-center>
                         <!-- Contenedor 70% -->
                         <v-col cols="12" md="9" class="pt-12">
-                            <v-skeleton-loader type="heading" color="#f5f1f1"></v-skeleton-loader>
-                            <v-skeleton-loader type="subtitle" color="#f5f1f1"></v-skeleton-loader>
-                            <v-skeleton-loader type="chip" color="#f5f1f1"></v-skeleton-loader>
-                            <v-skeleton-loader type="image" color="#f5f1f1" class="pt-md-12 pb-md-12"></v-skeleton-loader>
-                            <v-skeleton-loader type="paragraph" color="#f5f1f1"></v-skeleton-loader>
-                            <v-skeleton-loader type="paragraph" color="#f5f1f1"></v-skeleton-loader>
-                            <v-skeleton-loader type="paragraph" color="#f5f1f1"></v-skeleton-loader>
+                            <v-skeleton-loader type="heading" color="#F5F5F5"></v-skeleton-loader>
+                            <v-skeleton-loader type="subtitle" color="#F5F5F5"></v-skeleton-loader>
+                            <v-skeleton-loader type="chip" color="#F5F5F5"></v-skeleton-loader>
+                            <v-skeleton-loader type="image" color="#F5F5F5" class="pt-md-12 pb-md-12"></v-skeleton-loader>
+                            <v-skeleton-loader type="paragraph" color="#F5F5F5"></v-skeleton-loader>
+                            <v-skeleton-loader type="paragraph" color="#F5F5F5"></v-skeleton-loader>
+                            <v-skeleton-loader type="paragraph" color="#F5F5F5"></v-skeleton-loader>
                         </v-col>
                         <!-- Contenedor 30% -->
                         <v-col cols="12" md="3" class="pt-12">
-                            <v-skeleton-loader type="list-item-two-line" color="#f5f1f1"></v-skeleton-loader>
-                            <v-skeleton-loader type="list-item-two-line" color="#f5f1f1"></v-skeleton-loader>
-                            <v-skeleton-loader type="list-item-two-line" color="#f5f1f1"></v-skeleton-loader>
-                            <v-skeleton-loader type="list-item-two-line" color="#f5f1f1"></v-skeleton-loader>
+                            <v-skeleton-loader type="list-item-two-line" color="#F5F5F5"></v-skeleton-loader>
+                            <v-skeleton-loader type="list-item-two-line" color="#F5F5F5"></v-skeleton-loader>
+                            <v-skeleton-loader type="list-item-two-line" color="#F5F5F5"></v-skeleton-loader>
+                            <v-skeleton-loader type="list-item-two-line" color="#F5F5F5"></v-skeleton-loader>
                         </v-col>
                     </v-row>
                 </v-sheet>
@@ -43,7 +43,7 @@
                         </v-sheet>
 
                         <v-sheet class="d-flex flex-wrap justify-start mt-2 mb-2">
-                            <v-chip v-for="category in article.categories" class="mr-2 mb-2" color="#0801ff">
+                            <v-chip v-for="category in article.categories" class="mr-2 mb-2" color="#E91E63">
                                 {{ category.name }}
                             </v-chip>
                         </v-sheet>
@@ -168,7 +168,7 @@ export default {
 
 <style scoped>
 .project {
-    background-color: var(--primary-background);
+    background-color: #F5F5F5;
 }
 
 .container {
@@ -189,14 +189,14 @@ export default {
 }
 
 .title {
-    font-size: 35px;
+    font-size: 25px;
     font-weight: bold;
-    color: var(--primary-blue);
+    color: #E91E63;
     text-align: start;
     line-height: 1.1;
 
     @media only screen and (min-width: 1024px) {
-        font-size: 55px;
+        font-size: 35px;
 
     }
 
@@ -204,7 +204,7 @@ export default {
 
 .description {
     margin: 15px 0;
-    color: var(--primary-blue);
+    color: #E91E63;
 }
 
 .img-container {
@@ -263,11 +263,7 @@ export default {
 }
 
 .project-info h3 {
-    color: var(--primary-blue);
-}
-
-.link {
-    text-decoration: underline;
+    color: #E91E63;
 }
 
 .article-content {
@@ -284,10 +280,10 @@ export default {
     width: 90%;
     font-size: 25px;
     margin: 0 auto;
-    color: var(--primary-blue);
+    color: #F5F5F5;
     background: transparent;
     text-align: start;
-    border-top: 1px solid var(--primary-black);
+    border-top: 1px solid #E91E63;
 
     @media only screen and (min-width: 1024px) {
         font-size: 35px;

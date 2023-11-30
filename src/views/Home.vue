@@ -10,7 +10,7 @@
         <VideoTutorial></VideoTutorial>
 
         <!-- blog section -->
-        <BlogSection></BlogSection>
+        <BlogSection :blogEntry="blogEntry"></BlogSection>
 
         <!-- seccion de Por que Unfollowers -->
         <WhyUnfollowers></WhyUnfollowers>
@@ -33,6 +33,8 @@ import ContactSection from '../components/ContactSection.vue';
 import CallToAction from '../components/CallToAction.vue';
 
 export default {
+
+    props: ['blogEntry'],
 
     components: {
         HomeSection,

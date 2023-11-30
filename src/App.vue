@@ -5,14 +5,16 @@
 
     <!-- contenido principal que cambia acorde a la ruta -->
     <main>
-      <router-view></router-view>
+      <router-view :blogEntry="blogEntry"></router-view>
     </main>
 
-    <myFooter></myFooter>
+    <myFooter :blogEntry="blogEntry"></myFooter>
   </v-app>
 </template>
 
 <script>
+import api from './api';
+
 import myHeader from './components/Header.vue';
 import myFooter from './components/Footer.vue';
 
@@ -21,6 +23,26 @@ export default {
   components: {
     myHeader, // Registra el componente
     myFooter
+  },
+
+  data: () => ({
+    blogEntry: []
+  }),
+
+  methods: {
+    getArticles() {
+      api.get('/api/articles?limit=3')
+        .then(response => {
+          this.blogEntry = response.data.data;
+        })
+        .catch(error => {
+          console.error('Error al hacer la solicitud GET:', error);
+        });
+      }
+  },
+
+  mounted() {
+    this.getArticles();
   }
 }
 </script>

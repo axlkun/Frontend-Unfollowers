@@ -15,99 +15,49 @@
 
         <v-sheet class="d-flex flex-md-row flex-column justify-center bg-transparent mb-10" style="gap: 30px;">
            
-            <v-card class="mx-auto rounded-lg" max-width="350" variant="elevated">
-                <v-img height="200" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+            <v-card v-for="article in blogEntry" class="mx-auto rounded-lg" max-width="350" variant="elevated">
+                <v-img height="200" :src="`${dominio}${article.imageUrl}`"
                     cover>
                     
                 </v-img>
 
                 <v-sheet class="pa-2">
 
-                    <v-chip class="ma-1" variant="text" size="small">18 Agosto, 2024</v-chip>
+                    <v-chip class="ma-1" variant="text" size="small">{{ article.created_date }}</v-chip>
 
-                    <v-chip class="ma-1" variant="outlined" size="small">Instagram</v-chip>
-            
-                    <v-chip class="ma-1" variant="outlined" size="small">Estrategia</v-chip>
-            
+                    <v-chip v-for="category in article.categories" class="ma-1" variant="outlined" size="small">{{ category.name }}</v-chip>
+                        
                   </v-sheet>
 
-                  <v-card-title class="text-visible font-weight-bold">Top 10 Australian beaches and more text</v-card-title>
+                  <v-card-title class="text-visible font-weight-bold">{{ article.title }}</v-card-title>
 
                 <v-card-text class="text-visible">
-                    <p>too much text here cuz is like an article summary and I need a litle bit more text here thanks</p>
+                    <p>{{ article.summary }}</p>
                 </v-card-text>
 
                 <v-card-actions>
-                    <v-btn color="pink">
+                    <v-btn color="pink" :to="'/blog/' + article.slug">
                         Leer
                     </v-btn>
                 </v-card-actions>
             </v-card>
-            <v-card class="mx-auto rounded-lg" max-width="350" variant="elevated">
-                <v-img height="200" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                    cover>
-                    
-                </v-img>
-
-                <v-sheet class="pa-2">
-
-                    <v-chip class="ma-1" variant="text" size="small">18 Agosto, 2024</v-chip>
-
-                    <v-chip class="ma-1" variant="outlined" size="small">Instagram</v-chip>
             
-                    <v-chip class="ma-1" variant="outlined" size="small">Estrategia</v-chip>
-            
-                  </v-sheet>
-
-                  <v-card-title class="text-visible font-weight-bold">Top 10 Australian beaches and more text</v-card-title>
-
-                <v-card-text class="text-visible">
-                    <p>too much text here cuz is like an article summary and I need a litle bit more text here thanks</p>
-                </v-card-text>
-
-                <v-card-actions>
-                    <v-btn color="pink">
-                        Leer
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
-            <v-card class="mx-auto rounded-lg" max-width="350" variant="elevated">
-                <v-img height="200" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                    cover>
-                    
-                </v-img>
-
-                <v-sheet class="pa-2">
-
-                    <v-chip class="ma-1" variant="text" size="small">18 Agosto, 2024</v-chip>
-
-                    <v-chip class="ma-1" variant="outlined" size="small">Instagram</v-chip>
-            
-                    <v-chip class="ma-1" variant="outlined" size="small">Estrategia</v-chip>
-            
-                  </v-sheet>
-
-                  <v-card-title class="text-visible font-weight-bold">Top 10 Australian beaches and more text</v-card-title>
-
-                <v-card-text class="text-visible">
-                    <p>too much text here cuz is like an article summary and I need a litle bit more text here thanks</p>
-                </v-card-text>
-
-                <v-card-actions>
-                    <v-btn color="pink">
-                        Leer
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
         </v-sheet>
 
     </v-sheet>
 </template>
 
 <script>
+import api from '../api';
 
 export default {
-    name: 'BlogSection'
+    name: 'BlogSection',
+
+    props: ['blogEntry'],
+
+    data: () => ({
+        dominio: api.defaults.baseURL
+    })
 }
 </script>
 

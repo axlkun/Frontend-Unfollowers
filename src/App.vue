@@ -52,24 +52,21 @@ export default {
   width: 90%;
   margin: 0 auto;
 
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 960px) {
     width: 75%;
     margin: 0;
   }
 }
 
 .custom-sizing-img {
-  /* adapta las imagenes */
-  max-width: 250px;
-  /* vista móvil */
-  max-height: 250px;
-  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+  width: 80%;
+  object-fit: contain;
+  margin: -15px auto;
 
-  @media only screen and (min-width: 600px) {
-    /* resto de pantallas */
-    max-width: 550px;
-    max-height: 550px;
-    margin: -70px -20px;
+  @media only screen and (min-width: 1024px) {
+      width: 100%;
+      
   }
 }
 
@@ -91,7 +88,7 @@ export default {
   margin: 0 auto;
   line-height: 1.8;
 
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 960px) {
       /* resto de vistas */
       max-width: 50%;
       min-height: 100vh;

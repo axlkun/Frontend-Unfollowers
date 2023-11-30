@@ -33,7 +33,7 @@
             </v-sheet>
 
             <v-sheet class="d-flex flex-column justify-center align-center bg-grey-lighten-4">
-                <v-alert class="" color="green-darken-4" icon="mdi mdi-security" title="Sin Contraseñas"
+                <v-alert class="mt-5" color="green-darken-4" icon="mdi mdi-security" title="Sin Contraseñas"
                     text="Unfollowers nunca solicita tus credenciales de Instagram para funcionar. Tu información personal está completamente a salvo."
                     variant="tonal"></v-alert>
                 <img :src="imgHome" alt="Imagen Home SVG" class="custom-sizing-img home-img" loading="lazy" />

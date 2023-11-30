@@ -47,7 +47,11 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
+    padding: 20px 0;
+    width: 90%;
+    max-width: 120rem;
+    margin: 0 auto;
+    background-color: transparent;
 }
 
 .logo a {

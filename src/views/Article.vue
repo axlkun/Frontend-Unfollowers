@@ -81,17 +81,17 @@
             <h2>Artículos relacionados</h2>
         </v-sheet>
 
-        <!-- <articlesList :blogEntry="articles"></articlesList>
+        <ArticlesList :blogEntry="articles"></articlesList>
 
-        <contactSection></contactSection> -->
+        <CallToAction></CallToAction>
 
     </v-sheet>
 </template>
 
 <script>
 import api from '../api';
-// import articlesList from '../components/ArticlesList.vue';
-// import contactSection from '../components/ContactSection.vue';
+import ArticlesList from '../components/ArticlesList.vue';
+import CallToAction from '../components/CallToAction.vue';
 
 export default {
 
@@ -100,8 +100,8 @@ export default {
     props: ['slug'],
 
     components: {
-        // articlesList,
-        // contactSection
+        ArticlesList,
+        CallToAction
     },
 
     data: () => ({
@@ -177,11 +177,6 @@ export default {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-
-
-    @media only screen and (min-width: 1024px) {
-        max-width: 90%;
-    }
 }
 
 .container * {
@@ -279,8 +274,8 @@ export default {
 .title-container {
     width: 90%;
     font-size: 25px;
-    margin: 0 auto;
-    color: #F5F5F5;
+    margin: 15px auto;
+    color: #E91E63;
     background: transparent;
     text-align: start;
     border-top: 1px solid #E91E63;

@@ -1,6 +1,6 @@
 <template>
     <!-- Seccion de inicio -->
-    <v-sheet class=" bg-grey-lighten-4" style="min-height: 90vh" id="home">
+    <v-sheet class="d-flex flex-md-row flex-column justify-center align-center bg-grey-lighten-4" style="min-height: 90vh" id="home">
         <v-sheet class="d-flex flex-md-row flex-column justify-center align-center home-container" style="gap: 20px;">
             <v-sheet class="d-flex flex-column justify-center align-center bg-grey-lighten-4 custom-sizing">
                 <v-sheet class=" mx-auto mb-8 bg-grey-lighten-4">
@@ -33,9 +33,7 @@
             </v-sheet>
 
             <v-sheet class="d-flex flex-column justify-center align-center bg-grey-lighten-4">
-                <v-alert class="mt-5" color="green-darken-4" icon="mdi mdi-security" title="Sin Contraseñas"
-                    text="Unfollowers nunca solicita tus credenciales de Instagram para funcionar. Tu información personal está completamente a salvo."
-                    variant="tonal"></v-alert>
+                
                 <img :src="imgHome" alt="Imagen Home SVG" class="custom-sizing-img home-img" loading="lazy" />
             </v-sheet>
         </v-sheet>
@@ -68,6 +66,6 @@ export default {
 
 .home-img {
     margin: -25px 0;
-    max-height: 600px;
+    max-height: 900px;
 }
 </style>

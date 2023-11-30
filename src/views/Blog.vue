@@ -1,113 +1,48 @@
 <template>
-    <v-sheet class="d-flex flex-column align-center justify-center background-custom" style="min-height: 100vh;">
-        <v-sheet class="bg-transparent pa-5 custom-sheet text-center">
-            <v-chip variant="outlined" size="x-large" color="pink">
-                Blog
-            </v-chip>
-
-            <h2 class="pt-5 text-h4 ma-1 font-weight-black text-pink">Artículos sobre estrategias en redes sociales, como alimentar el algoritmo, planes para crecer
-                una audencia y mucho más...</h2>
-
-            <p class="pt-5 text-h7 ma-5 font-weight-bold text-grey-darken-1">Lee los últimos artículos redactados, encuentra uno nuevo cada semana y maneja tus redes
-                sociales como un profesional!</p>
-        </v-sheet>
-
-
-        <v-sheet class="d-flex flex-md-row flex-column justify-center bg-transparent mb-10" style="gap: 30px;">
-           
-            <v-card class="mx-auto rounded-lg" max-width="350" variant="elevated">
-                <v-img height="200" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                    cover>
-                    
-                </v-img>
-
-                <v-sheet class="pa-2">
-
-                    <v-chip class="ma-1" variant="text" size="small">18 Agosto, 2024</v-chip>
-
-                    <v-chip class="ma-1" variant="outlined" size="small">Instagram</v-chip>
-            
-                    <v-chip class="ma-1" variant="outlined" size="small">Estrategia</v-chip>
-            
-                  </v-sheet>
-
-                  <v-card-title class="text-visible font-weight-bold">Top 10 Australian beaches and more text</v-card-title>
-
-                <v-card-text class="text-visible">
-                    <p>too much text here cuz is like an article summary and I need a litle bit more text here thanks</p>
-                </v-card-text>
-
-                <v-card-actions>
-                    <v-btn color="pink">
-                        Leer
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
-            <v-card class="mx-auto rounded-lg" max-width="350" variant="elevated">
-                <v-img height="200" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                    cover>
-                    
-                </v-img>
-
-                <v-sheet class="pa-2">
-
-                    <v-chip class="ma-1" variant="text" size="small">18 Agosto, 2024</v-chip>
-
-                    <v-chip class="ma-1" variant="outlined" size="small">Instagram</v-chip>
-            
-                    <v-chip class="ma-1" variant="outlined" size="small">Estrategia</v-chip>
-            
-                  </v-sheet>
-
-                  <v-card-title class="text-visible font-weight-bold">Top 10 Australian beaches and more text</v-card-title>
-
-                <v-card-text class="text-visible">
-                    <p>too much text here cuz is like an article summary and I need a litle bit more text here thanks</p>
-                </v-card-text>
-
-                <v-card-actions>
-                    <v-btn color="pink">
-                        Leer
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
-            <v-card class="mx-auto rounded-lg" max-width="350" variant="elevated">
-                <v-img height="200" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                    cover>
-                    
-                </v-img>
-
-                <v-sheet class="pa-2">
-
-                    <v-chip class="ma-1" variant="text" size="small">18 Agosto, 2024</v-chip>
-
-                    <v-chip class="ma-1" variant="outlined" size="small">Instagram</v-chip>
-            
-                    <v-chip class="ma-1" variant="outlined" size="small">Estrategia</v-chip>
-            
-                  </v-sheet>
-
-                  <v-card-title class="text-visible font-weight-bold">Top 10 Australian beaches and more text</v-card-title>
-
-                <v-card-text class="text-visible">
-                    <p>too much text here cuz is like an article summary and I need a litle bit more text here thanks</p>
-                </v-card-text>
-
-                <v-card-actions>
-                    <v-btn color="pink">
-                        Leer
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-sheet>
-
-    </v-sheet>
+    <BlogSection :blogEntry="blogEntry"></BlogSection>
 </template>
 
 <script>
+import api from '../api';
+import BlogSection from '../components/BlogSection.vue';
 
 export default {
-    name: 'BlogView'
+    name: 'BlogView',
+
+    components: {
+        BlogSection
+    },
+
+    data: () => ({
+        blogEntry: [],
+        loading: true
+    }),
+
+    methods: {
+        getArticles() {
+            api.get('/api/articles')
+                .then(response => {
+                    
+                    if (response.status === 200) {
+                        this.blogEntry = response.data.data;
+                    } else {
+                        console.error('Respuesta no exitosa:', response);
+                        this.$router.push('/');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al hacer la solicitud GET:', error);
+                    this.$router.push('/');
+                })
+                .finally(() => {
+                    this.loading = false; 
+                });
+        }
+    },
+
+    created() {
+        this.getArticles();
+    }
 }
 </script>
 

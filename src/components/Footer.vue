@@ -56,24 +56,12 @@
 </template>
 
 <script>
-import { scrollToSection } from '../utils/utils';
 
 export default {
 
     name: 'myFooter',
 
     props: ['blogEntry'],
-
-    methods: {
-        scrollToSection, // se declara la función importada
-
-        redirectTo(page) {
-            // Realiza la redirección a la página '/results'
-            this.$router.push(page);
-            window.scrollTo(0, 0);
-        }
-
-    },
 
 }
 </script>

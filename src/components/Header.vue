@@ -1,33 +1,26 @@
 <template>
     <header class="header">
         <nav>
-            <div class="logo" @click="redirectToHome">
-                <a><span>Un</span>followers</a>
+            <div class="logo">
+                <a href="/"><span>Un</span>followers</a>
             </div>
             <input type="checkbox" id="menu-toggle">
             <label for="menu-toggle" class="menu-icon">&#9776;</label>
             <ul class="menu">
-                <li><a @click="scrollToSection('steps')">Tutorial</a></li>
-                <li><a @click="scrollToSection('contact')">Contacto</a></li>
+                <li><a href="/results">Quien no me sigue</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/#steps">Tutorial</a></li>
+                <li><a href="/#contact">Contacto</a></li>
             </ul>
         </nav>
     </header>
 </template>
   
 <script>
-import { scrollToSection } from '../utils/utils';
 
 export default {
 
     name: 'myHeader',
-
-    methods: {
-        scrollToSection, // se declara la función importada
-
-        redirectToHome() { // función que reedirige al home
-            this.$router.push('/');
-        }
-    },
 
 }
 </script>

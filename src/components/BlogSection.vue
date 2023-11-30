@@ -1,5 +1,5 @@
 <template>
-    <v-sheet class="d-flex flex-column align-center justify-center background-custom" style="min-height: 100vh;">
+    <v-sheet class="d-flex flex-column align-center justify-center bg-grey-lighten-4" style="min-height: 100vh;">
         <v-sheet class="bg-transparent pa-5 custom-sheet text-center">
             <v-chip variant="outlined" size="x-large" color="pink" href="/blog">
                 Blog
@@ -62,10 +62,6 @@ export default {
 </script>
 
 <style scoped>
-.background-custom {
-    background: radial-gradient(circle, rgba(252, 228, 236, 1) 27%, rgba(236, 239, 241, 1) 50%);
-}
-
 .custom-sheet {
     @media only screen and (min-width: 960px) {
         width: 70%;

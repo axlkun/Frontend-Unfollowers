@@ -7,11 +7,11 @@
             <p>Navegacion</p>
   
             <ul>
-              <li><a @click="scrollToSection('home')">Inicio</a></li>
-              <li><a @click="scrollToSection('how-works')">¿Cómo funciona?</a></li>
-              <li><a @click="scrollToSection('steps')">Tutorial</a></li>
-              <li><a @click="scrollToSection('contact')">Contacto</a></li>
-              <li>Blog (construyendo)</li>
+              <li><a href="/">Inicio</a></li>
+              <li><a href="/#how-works">¿Cómo funciona?</a></li>
+              <li><a href="/#steps">Tutorial</a></li>
+              <li><a href="/#contact">Contacto</a></li>
+              <li><a href="/blog">Blog</a></li>
             </ul>
           </div>
   
@@ -19,17 +19,22 @@
             <p>Herramientas Gratis</p>
   
             <ul>
-              <li><a @click="redirectTo('/results')">Quien no me sigue en Instagram</a></li>
+              <li><a href="/results">Quien no me sigue en Instagram</a></li>
             </ul>
+
+            <p class="mt-2">Últimos artículos</p>
+            <ul>
+              <li v-for="article in blogEntry"><a :href="'/blog/' + article.slug">{{article.title}}</a></li>
+          </ul>
           </div>
   
           <div class="section">
             <p>Más</p>
   
             <ul>
-              <li><a @click="redirectTo('/terminos-y-condiciones-unfollowerstracker')">Términos</a></li>
-              <li><a @click="redirectTo('/politica-de-privacidad-unfollowerstracker')">Privacidad</a></li>
-              <li><a @click="redirectTo('/politica-de-cookies-unfollowerstracker')">Cookies</a></li>
+              <li><a href="/terminos-y-condiciones-unfollowerstracker">Términos</a></li>
+              <li><a href="/politica-de-privacidad-unfollowerstracker">Privacidad</a></li>
+              <li><a href="/politica-de-cookies-unfollowerstracker">Cookies</a></li>
             </ul>
           </div>
           
@@ -56,6 +61,8 @@ import { scrollToSection } from '../utils/utils';
 export default {
 
     name: 'myFooter',
+
+    props: ['blogEntry'],
 
     methods: {
         scrollToSection, // se declara la función importada
@@ -98,7 +105,11 @@ export default {
     font-weight: 600;
   }
   
-  ul, ol {
-    list-style: none;
+  .section a{
+    color: black;
+
+    &:hover{
+      color: #E91E63;
+    }
   }
 </style>

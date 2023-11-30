@@ -19,7 +19,7 @@ style="min-height: 90vh" id="home">
         </h2>
 
         <v-sheet class="d-flex flex-md-row flex-column align-center bg-grey-lighten-4">
-            <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated" to="/results"
+            <v-btn prepend-icon="mdi mdi-account-remove" variant="elevated" href="/results"
                 class="mt-10 mx-center" color="pink">
                 Quién no me sigue
             </v-btn>

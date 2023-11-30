@@ -1,7 +1,7 @@
 <template>
     <v-sheet class="d-flex flex-column align-center justify-center background-custom" style="min-height: 100vh;">
         <v-sheet class="bg-transparent pa-5 custom-sheet text-center">
-            <v-chip variant="outlined" size="x-large" color="pink" to="/blog">
+            <v-chip variant="outlined" size="x-large" color="pink" href="/blog">
                 Blog
             </v-chip>
 
@@ -36,7 +36,7 @@
                 </v-card-text>
 
                 <v-card-actions>
-                    <v-btn color="pink" :to="'/blog/' + article.slug">
+                    <v-btn color="pink" :href="'/blog/' + article.slug">
                         Leer
                     </v-btn>
                 </v-card-actions>

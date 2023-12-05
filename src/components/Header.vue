@@ -8,9 +8,9 @@
             <label for="menu-toggle" class="menu-icon">&#9776;</label>
             <ul class="menu">
                 <li><a href="/results">Quien no me sigue</a></li>
+                <li><a href="/#how-works">¿Como funciona?</a></li>
+                <li><a href="/#steps">Video Tutorial</a></li>
                 <li><a href="/blog">Blog</a></li>
-                <li><a href="/#steps">Tutorial</a></li>
-                <li><a href="/#contact">Contacto</a></li>
             </ul>
         </nav>
     </header>

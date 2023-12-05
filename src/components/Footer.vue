@@ -10,7 +10,6 @@
           <li><a href="/">Inicio</a></li>
           <li><a href="/#how-works">¿Cómo funciona?</a></li>
           <li><a href="/#steps">Tutorial</a></li>
-          <li><a href="/#contact">Contacto</a></li>
           <li><a href="/blog">Blog</a></li>
         </ul>
       </div>
@@ -32,13 +31,22 @@
       </div>
 
       <div class="section">
-        <p>Más</p>
+        <p>Legal</p>
 
         <ul>
           <li><a href="/terminos-y-condiciones-unfollowerstracker">Términos</a></li>
           <li><a href="/politica-de-privacidad-unfollowerstracker">Privacidad</a></li>
           <li><a href="/politica-de-cookies-unfollowerstracker">Cookies</a></li>
         </ul>
+      </div>
+
+      <div class="section">
+        <p>¿Tienes preguntas?</p>
+
+        <v-btn prepend-icon="mdi mdi-email-arrow-right-outline" variant="elevated" href="mailto:axelcruz.dev@gmail.com"
+          class="ma-5" color="pink">
+          Contáctanos
+        </v-btn>
       </div>
 
     </div>
@@ -78,6 +86,7 @@ export default {
   margin: 0 auto;
   text-align: center;
   border-bottom: 1px solid gray;
+  font-size: 15px
 }
 
 .footer-section {
@@ -100,5 +109,4 @@ export default {
     color: #E91E63;
   }
 }
-
 </style>
